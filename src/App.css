@@ -1,5 +1,5 @@
-h1 {
-    color: coral;
+body {
+    margin: 0;
 }
 
 #item {
@@ -8,4 +8,49 @@ h1 {
 }
 #item_name {
     margin-right: 6px;
+}
+#rightSidebar {
+    position: fixed;
+    right: 0;
+}
+#leftSidebar {
+    position: fixed;
+    height: 100%;
+    border-right: 2px solid lightgray;
+    padding-top: 10px;
+}
+#sidebarButton {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10%;
+    margin: 0 15px 10px 15px
+}
+#sidebarButton:hover {
+    background-color: lightgray;
+}
+
+#chapter {
+    padding: 10px;
+    background-color: coral;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+#chapter_name {
+    display: block;
+}
+#dot {
+    height: 50px;
+    width: 50px;
+    background-color: coral;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 256px 0 256px;
+    width: 100%
 }

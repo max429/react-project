@@ -4,5 +4,109 @@
       "name": "234",
       "id": 1677675315369
     }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Семья, друзья, отношения",
+      "tasks": [{
+        "id": 1,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 2,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 3,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      },
+        {
+          "id": 4,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }, {
+          "id": 5,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }, {
+          "id": 6,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }]
+    },
+    {
+      "id": 2,
+      "name": "Животные",
+      "tasks": [{
+        "id": 1,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 2,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 3,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      },
+        {
+          "id": 4,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }]
+    },
+    {
+      "id": 3,
+      "name": "Книги и фильмы",
+      "tasks": [{
+        "id": 1,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 2,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 3,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 4,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 5,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 6,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 7,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 8,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      }, {
+        "id": 9,
+        "words": [{}, {}, {}, {}, {}],
+        "type": "choose_translate"
+      },
+        {
+          "id": 10,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }, {
+          "id": 11,
+          "words": [{}, {}, {}, {}, {}],
+          "type": "choose_translate"
+        }]
+    }
   ]
 }
