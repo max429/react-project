@@ -1,8 +1,15 @@
 {
   "users": [
     {
-      "name": "234",
-      "id": 1677675315369
+      "name": "dfsfdsfs",
+      "id": 1677675315369,
+      "passedTasks": [{
+        "chapterId": 1,
+        "taskId": 1
+      }, {
+        "chapterId": 1,
+        "taskId": 2
+      }]
     }
   ],
   "chapters": [

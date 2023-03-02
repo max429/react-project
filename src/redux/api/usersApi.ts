@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {IUser} from "../../interfaces/test.interface";
 const url = "http://localhost:3000/"
 
-export const testApi = createApi({
+export const usersApi = createApi({
     reducerPath: 'testApi',
     tagTypes: ['Users'],
     baseQuery: fetchBaseQuery({baseUrl: url}),
@@ -14,6 +14,9 @@ export const testApi = createApi({
                     { type: 'Users', id: 'LIST' },
                 ]
                 : [{ type: 'Users', id: 'LIST' }],
+        }),
+        getUserById: builder.query<IUser, number>({
+            query: (id) => ({url: `users/${id}`}),
         }),
         addUser: builder.mutation({
             query: (body: IUser) => ({
@@ -33,4 +36,4 @@ export const testApi = createApi({
     })
 })
 
-export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation } = testApi;
+export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation, useGetUserByIdQuery } = usersApi;

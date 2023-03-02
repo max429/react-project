@@ -1,0 +1,22 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.circle {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 3px solid deepskyblue;
+    border-radius: 50%;
+    border-top-color: dodgerblue;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

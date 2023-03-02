@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 import './App.css';
-import {useGetUsersQuery, useAddUserMutation, useDeleteUserMutation} from "./redux/api/testApi";
 import {useGetChaptersQuery} from "./redux/api/chaptersApi";
+import {Loading} from "./components/Loading/Loading";
+import {Task, TaskType} from "./components/Task/Task";
+import {IUser} from "./interfaces/test.interface";
 
 export const App = () => {
     const {data = [], isLoading} = useGetChaptersQuery(null);
+
+    const [user, setUser] = useState<IUser>({
+        "name": "dfsfdsfs",
+        "id": 1677675315369,
+        "passedTasks": []
+    })
+
     const [name, setName] = useState('');
     if (isLoading) {
-        return (<div>Загрузка...</div>)
+        return (<Loading/>)
     }
+    let previousTask: any = null;
     return (
         <div style={{
             display: 'flex'
@@ -43,14 +53,25 @@ export const App = () => {
                                 taskIndex % 3 === 1) {
                                 offset = 20
                             }
-                           return (<div
-                               id={'dot'}
-                               style={{
-                                   marginLeft: (taskIndex % 4) * (offsetDirection === 'left' ? -offset : offset)
-                               }}
-                               key={task.id}>
+                           const margin = (taskIndex % 4) * (offsetDirection === 'left' ? -offset : offset)
+                           let type: TaskType = 'locked';
+                           const {passedTasks} = user;
 
-                           </div>)
+                           if (!passedTasks?.length && !chapterIndex && !taskIndex) {
+                               type = 'current';
+                           } else if (passedTasks?.length) {
+                               for (let i = 0; i < passedTasks.length; i++) {
+                                   if (passedTasks[i].taskId === task.id &&
+                                       passedTasks[i].chapterId === item.id) {
+                                       type = 'passed';
+                                   }
+                               }
+                           }
+                           if (type === 'locked' && previousTask?.type === 'passed') {
+                               type = 'current';
+                           }
+                           previousTask = {...task, type: type};
+                           return (<Task margin={margin} index={taskIndex} key={task.id} type={type}/>)
                        })}
                    </div>)
                })}

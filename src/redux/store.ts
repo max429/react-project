@@ -1,13 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {testApi} from "./api/testApi";
+import {usersApi} from "./api/usersApi";
 import {chaptersApi} from "./api/chaptersApi";
 
 export const store = configureStore({
     reducer: {
-        [testApi.reducerPath]: testApi.reducer,
+        [usersApi.reducerPath]: usersApi.reducer,
         [chaptersApi.reducerPath]: chaptersApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(testApi.middleware, chaptersApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(usersApi.middleware, chaptersApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

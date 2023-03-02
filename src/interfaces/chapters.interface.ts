@@ -8,6 +8,7 @@ interface IChapterTask {
     id: number;
     type: string;
     words: IChapterTaskWord[];
+    passed: boolean;
 }
 
 interface IChapterTaskWord {

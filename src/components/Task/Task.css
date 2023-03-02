@@ -1,0 +1,49 @@
+.task {
+    height: 50px;
+    width: 60px;
+    background-color: coral;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-shadow: 0 7px #999;
+}
+
+.task:active {
+    box-shadow: 0 0;
+    transform: translateY(7px);
+}
+
+.task_top_hint {
+    position: absolute;
+    background-color: white;
+    border: 2px lightgray solid;
+    border-radius: 5px;
+    top: -40px;
+    padding: 8px 12px 8px 12px;
+    color: green;
+    animation: floating 1s linear infinite alternate;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+.passed {
+    background-color: gold;
+    box-shadow: 0 7px darkgoldenrod;
+}
+.current {
+    background-color: green;
+    box-shadow: 0 8px darkgreen;
+}
+.locked {
+    background-color: gray;
+    box-shadow: 0 7px #999;
+
+}
+
