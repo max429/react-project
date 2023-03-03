@@ -10,24 +10,3 @@
     position: fixed;
     right: 0;
 }
-
-#item {
-    display: flex;
-    margin-bottom: 10px;
-}
-#item_name {
-    margin-right: 6px;
-}
-
-#chapter {
-    padding: 10px;
-    background-color: coral;
-    border-radius: 10px;
-    margin-bottom: 45px;
-    width: 100%;
-    color: white;
-    box-sizing: border-box;
-}
-#chapter_name {
-    display: block;
-}

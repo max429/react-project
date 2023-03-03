@@ -4,5 +4,9 @@ export interface IUser {
     passedTasks: {
         taskId: number;
         chapterId: number;
-    }[]
+    }[];
+    currentTask: {
+        taskId: number;
+        chapterId: number;
+    }
 }
