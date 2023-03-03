@@ -24,7 +24,7 @@
     border: 2px lightgray solid;
     border-radius: 5px;
     top: -40px;
-    padding: 8px 12px 8px 12px;
+    padding: 8px 12px;
     color: green;
     animation: floating 1s linear infinite alternate;
 }

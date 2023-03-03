@@ -1,0 +1,13 @@
+.profile {
+    padding-top: 12px
+}
+
+.input {
+    border-radius: 10px;
+    padding: 10px 4px;
+    background-color: lightgray;
+    border: 2px solid gray;
+    outline: none;
+    font-size: 16px;
+    margin-left: 10px;
+}

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Task, TaskType} from "./parts/Task/Task";
 import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
 import {IUser} from "../../interfaces/test.interface";
 import {Loading} from "../../components/Loading/Loading";

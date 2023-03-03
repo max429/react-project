@@ -46,5 +46,4 @@ export const Chapter: FC<IProps> = ({data, index, userData}) => {
             return (<Task margin={margin} index={taskIndex} key={task.id} type={type}/>)
         })}
     </div>)
-
 }
