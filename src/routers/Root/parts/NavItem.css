@@ -1,0 +1,23 @@
+.nav-item {
+    cursor: pointer;
+    margin: 0 15px 10px 15px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+}
+.nav-item__link {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.nav-item__link:not(.nav-item__link_active):hover {
+    background-color: gray;
+    color: white;
+}
+.nav-item__link_active {
+    background-color: green;
+    color: white;
+}

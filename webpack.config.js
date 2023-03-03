@@ -6,7 +6,8 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].[contenthash].js'
+        filename: '[name].[contenthash].js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -34,7 +35,8 @@ module.exports = {
     devServer: {
         static: {
             directory: path.resolve(__dirname, './dist')
-        }
+        },
+        historyApiFallback: true,
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.css'],

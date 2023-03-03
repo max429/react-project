@@ -1,29 +1,21 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import './Task.css';
+import classNames from "classnames";
 
-export type TaskType = 'passed' | 'current' | 'locked'
+export type TaskType = 'passed' | 'current' | 'locked';
 interface IProps {
     margin: number;
     index: number;
     type: TaskType;
 }
 
-export const Task: FC<IProps> = ({margin, index, type}) => {
+export const Task: FC<IProps> = ({margin, type}) => {
     return (
-        <div style={{
-            marginLeft: margin,
-            position: "relative",
-            display: 'flex',
-            justifyContent: 'center'
-        }}>
-            {type === 'current' && <div className={'task_top_hint'}>
+        <div className={'task'} style={{marginLeft: margin}}>
+            {type === 'current' && <div className={'task__top-hint'} >
                 Начать
             </div>}
-            <div
-                className={'task' + ` ${type}`}
-            >
-
-            </div>
+            <div className={classNames('task__circle', `task__circle_type_${type}`)}/>
         </div>
     )
 }
