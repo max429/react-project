@@ -18,29 +18,92 @@
       "name": "Семья, друзья, отношения",
       "tasks": [{
         "id": 1,
-        "words": [{}, {}, {}, {}, {}],
-        "type": "choose_translate"
+        "words": [
+          {
+            "id": 1,
+            "wordRu": "семья",
+            "wordEn": "family",
+            "variants": [{
+              "id": 1,
+              "wordRu": "улица",
+              "wordEn": "street",
+              "correct": false
+            }, {
+              "id": 2,
+              "wordRu": "ветер",
+              "wordEn": "wind",
+              "correct": false
+            }, {
+              "id": 3,
+              "wordRu": "отец",
+              "wordEn": "father",
+              "correct": false
+            }, {
+              "id": 4,
+              "wordRu": "семья",
+              "wordEn": "family",
+              "correct": true
+            }]
+          },
+          {
+            "id": 2,
+            "wordRu": "родственник",
+            "wordEn": "relative",
+            "variants": [
+              {
+                "id": 1,
+                "wordRu": "родственник",
+                "wordEn": "relative",
+                "correct": true
+              }
+            ]
+          }, {
+            "id": 3,
+            "wordRu": "папа",
+            "wordEn": "father",
+            "variants": [
+              {
+                "id": 1,
+                "wordRu": "папа",
+                "wordEn": "father",
+                "correct": true
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "wordRu": "мама",
+            "wordEn": "mother",
+            "variants": []
+          },
+          {
+            "id": 5,
+            "wordRu": "любовь",
+            "wordEn": "love",
+            "variants": []
+          }],
+        "type": "choose-translate"
       }, {
         "id": 2,
         "words": [{}, {}, {}, {}, {}],
-        "type": "choose_translate"
+        "type": "choose-translate"
       }, {
         "id": 3,
         "words": [{}, {}, {}, {}, {}],
-        "type": "choose_translate"
+        "type": "choose-translate"
       },
         {
           "id": 4,
           "words": [{}, {}, {}, {}, {}],
-          "type": "choose_translate"
+          "type": "choose-translate"
         }, {
           "id": 5,
           "words": [{}, {}, {}, {}, {}],
-          "type": "choose_translate"
+          "type": "choose-translate"
         }, {
           "id": 6,
           "words": [{}, {}, {}, {}, {}],
-          "type": "choose_translate"
+          "type": "choose-translate"
         }]
     },
     {

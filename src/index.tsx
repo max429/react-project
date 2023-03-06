@@ -8,8 +8,9 @@ import {
 } from "react-router-dom";
 import {Root} from "./routers/Root/Root";
 import {ErrorPage} from "./pages/ErrorPage/ErrorPage";
-import {Learning} from "./routers/Lerning/Learning";
+import {Learning} from "./routers/Learning/Learning";
 import {Profile} from "./routers/Profile/Profile";
+import {ChooseTranslatePage} from "./routers/Tasks/ChooseTranslate/ChooseTranslatePage";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile/>,
+            },
+            {
+                path: '/choose-translate',
+                element: <ChooseTranslatePage/>,
             }
         ]
     },

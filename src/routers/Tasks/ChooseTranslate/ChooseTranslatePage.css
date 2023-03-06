@@ -1,0 +1,43 @@
+.back-button {
+    position: absolute;
+    top: 12px;
+    left: 0;
+}
+.translate-card-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+.card {
+    border: #999999 solid 1px;
+    background-color: white;
+    padding: 20px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.card_correct {
+    background-color: green;
+    color: white;
+}
+.card_incorrect {
+    background-color: red;
+    color: white;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card:not(.card_incorrect, .card_correct):hover {
+    background-color: darkgrey;
+    color: white;
+}

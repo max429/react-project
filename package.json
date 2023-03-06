@@ -8,7 +8,7 @@
     "dev": "webpack serve --open",
     "build": "webpack --mode production --progress",
     "tscheck": "tsc",
-    "server": "json-server -w ./db.json -d 3000"
+    "server": "json-server -w ./db.json"
   },
   "author": "",
   "license": "ISC",

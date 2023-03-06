@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import './Profile.css';
 
 export const Profile = () => {
-
     const [name, setName] = useState('');
     return (<div className={'profile'}>
         <div>

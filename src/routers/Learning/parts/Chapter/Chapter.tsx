@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Task, TaskType} from "../Task/Task";
+import {Task, TaskState} from "../Task/Task";
 import './Chapter.css'
 import {IChapter} from "../../../../interfaces/chapters.interface";
 import {IUser} from "../../../../interfaces/test.interface";
@@ -30,20 +30,20 @@ export const Chapter: FC<IProps> = ({data, index, userData}) => {
                 offset = 20
             }
             const margin = (taskIndex % 4) * (offsetDirection === 'left' ? -offset : offset)
-            let type: TaskType = 'locked';
+            let taskState: TaskState = 'locked';
 
             if (!passedTasks?.length && !index && !taskIndex ||
                 currentTask.taskId === task.id && currentTask.chapterId === id) {
-                type = 'current';
+                taskState = 'current';
             }  else if (passedTasks?.length) {
                 for (let i = 0; i < passedTasks.length; i++) {
                     if (passedTasks[i].taskId === task.id &&
                         passedTasks[i].chapterId === id) {
-                        type = 'passed';
+                        taskState = 'passed';
                     }
                 }
             }
-            return (<Task margin={margin} index={taskIndex} key={task.id} type={type}/>)
+            return (<Task margin={margin} key={task.id} taskState={taskState} data={task}/>)
         })}
     </div>)
 }
