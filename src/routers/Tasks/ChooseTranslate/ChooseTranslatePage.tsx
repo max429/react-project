@@ -3,11 +3,10 @@ import './ChooseTranslatePage.css'
 import {useNavigate} from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import {IChapterTaskWord, IChapterTaskWordVariant} from "../../../interfaces/chapters.interface";
-import classNames from "classnames";
-import {useDispatch} from "react-redux";
+import classNames from "classnames";;
 import {fetchWordsForTask} from "../../../redux/actions/words.actions";
 import {shuffle} from "../../../utilities";
-import {useAppDispatch} from "../../../hooks/redux";
+import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -29,12 +28,11 @@ const NUMBER_OF_VARIANTS = 4;
 export const ChooseTranslatePage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const dispatch = useAppDispatch();
     const {state}: {state: IStateProps} = location;
 
     const [words, setWords] = useState(state.words);
     const [activeVariant, setActiveVariant] = useState(0);
-    const [answer, setAnswer] = useState<{id: number; answer: Answer} | null>(null);
+    const [answers, setAnswers] = useState<{id: number; answer: Answer}[]>([]);
     useEffect(() => {
         fetchWordsForTask({count: words.length * NUMBER_OF_VARIANTS}).then((newWords) => {
             setWords(words.map((item) => {
@@ -51,25 +49,37 @@ export const ChooseTranslatePage = () => {
                 return {...item, variants: shuffle(variants)}
             }))
         })
-    }, [])
+    }, []);
 
-    return (<div className={'translate-card-container'} >
+    const showFinishModal = () => {
+
+    }
+
+    return (<div className={'translate-card-container'}>
+
         <button onClick={() => navigate(-1)} className={'back-button'}>
             Назад
         </button>
+        <ProgressBar
+            data={answers.map((item) => item.answer === 'correct')}
+            length={words.length}/>
         <span style={{fontSize: 24, marginBottom: 20}}>
              {state.words[activeVariant].wordRu}
         </span>
         {words[activeVariant].variants.map((item) => {
+            const answer = answers[activeVariant];
             return (<Card key={item.id}
                           answer={item.id === answer?.id ? answer.answer : null}
                           data={item}
                           onClick={() => {
                 const answer = item.correct ? 'correct' : 'incorrect';
-                setAnswer({id: item.id, answer});
+                setAnswers(answers.concat({id: item.id, answer}))
                 setTimeout(() => {
-                    setActiveVariant(activeVariant + 1);
-                    setAnswer(null);
+                    if (activeVariant !== words.length - 1) {
+                        setActiveVariant(activeVariant + 1);
+                    } else {
+
+                    }
                 }, 500)
             }}/>)
         })}

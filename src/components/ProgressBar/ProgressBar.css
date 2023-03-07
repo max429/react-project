@@ -1,0 +1,34 @@
+:root {
+    --progress-item-width: 20%;
+}
+.progress-bar {
+    display: flex;
+    width: 100%;
+    height: 6px;
+    background-color: #999999;
+    border-radius: 10px;
+}
+.progress-bar__item {
+    height: inherit;
+    animation: progressBar 250ms linear;
+    width: var(--progress-item-width);
+}
+
+@keyframes progressBar {
+    0% { width: 0; }
+    100% { width: var(--progress-item-width); }
+}
+
+.progress-bar__item_correct {
+    background-color: green;
+}
+
+.progress-bar__item_incorrect {
+    background-color: red;
+}
+.progress-bar__item_first {
+    border-radius: 10px 0 0 10px;
+}
+.progress-bar__item_last {
+    border-radius: 0 10px 10px 0;
+}

@@ -52,7 +52,12 @@
         "type": "choose-translate"
       }, {
         "id": 2,
-        "words": [{}, {}, {}, {}, {}],
+        "words": [{
+            "id": 1,
+            "wordRu": "отношения",
+            "wordEn": "relationship",
+            "variants": []
+        }],
         "type": "choose-translate"
       }, {
         "id": 3,
