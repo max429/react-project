@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {IUser} from "../../interfaces/test.interface";
+import {IUser} from "../../interfaces/user.interface";
 const url = "http://localhost:3000/"
 
 export const usersApi = createApi({

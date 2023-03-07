@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
-import {IUser} from "../../interfaces/test.interface";
 import {Loading} from "../../components/Loading/Loading";
 import './Learning.css'
 import {Chapter} from "./parts/Chapter/Chapter";
+import {useAppSelector} from "../../hooks/redux";
 
 export const Learning = () => {
     const {data = [], isLoading} = useGetChaptersQuery(null);
+    const user = useAppSelector((state) => state.userReducer.data);
 
-    const [user] = useState<IUser>({
-        "name": "dfsfdsfs",
-        "id": 1677675315369,
-        "passedTasks": [],
-        currentTask: {
-            chapterId: 1,
-            taskId: 1,
-        }
-    })
+    console.log('Learning');
+
     if (isLoading) {
         return (<Loading/>)
     }

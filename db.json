@@ -3,13 +3,14 @@
     {
       "name": "dfsfdsfs",
       "id": 1677675315369,
-      "passedTasks": [{
+      "passedTasks": [],
+      "currentTask": {
         "chapterId": 1,
         "taskId": 1
-      }, {
-        "chapterId": 1,
-        "taskId": 2
-      }]
+      },
+      "experience": 0,
+      "dayExperience": 0,
+      "experienceGoal": 30
     }
   ],
   "chapters": [
@@ -23,52 +24,18 @@
             "id": 1,
             "wordRu": "семья",
             "wordEn": "family",
-            "variants": [{
-              "id": 1,
-              "wordRu": "улица",
-              "wordEn": "street",
-              "correct": false
-            }, {
-              "id": 2,
-              "wordRu": "ветер",
-              "wordEn": "wind",
-              "correct": false
-            }, {
-              "id": 3,
-              "wordRu": "отец",
-              "wordEn": "father",
-              "correct": false
-            }, {
-              "id": 4,
-              "wordRu": "семья",
-              "wordEn": "family",
-              "correct": true
-            }]
+            "variants": []
           },
           {
             "id": 2,
             "wordRu": "родственник",
             "wordEn": "relative",
-            "variants": [
-              {
-                "id": 1,
-                "wordRu": "родственник",
-                "wordEn": "relative",
-                "correct": true
-              }
-            ]
+            "variants": []
           }, {
             "id": 3,
             "wordRu": "папа",
             "wordEn": "father",
-            "variants": [
-              {
-                "id": 1,
-                "wordRu": "папа",
-                "wordEn": "father",
-                "correct": true
-              }
-            ]
+            "variants": []
           },
           {
             "id": 4,

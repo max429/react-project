@@ -6,7 +6,10 @@ export const chaptersApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: url}),
     endpoints: (build) => ({
         getChapters: build.query<IChapter[], any>({
-            query: () => 'chapters',
+            query: () => {
+                console.log('chaptersApi');
+                return 'chapters'
+            }
         }),
     })
 })

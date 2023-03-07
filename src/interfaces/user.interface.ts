@@ -1,11 +1,11 @@
 export interface IUser {
-    id: number;
-    name: string;
-    passedTasks: {
+    id?: number;
+    name?: string;
+    passedTasks?: {
         taskId: number;
         chapterId: number;
     }[];
-    currentTask: {
+    currentTask?: {
         taskId: number;
         chapterId: number;
     }
