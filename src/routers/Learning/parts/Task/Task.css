@@ -11,6 +11,16 @@
     cursor: pointer;
     margin-bottom: 10px;
     box-shadow: 0 7px #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task__circle-image {
+    width: 30px;
+    height: 30px;
+    filter: opacity(10%);
+    user-select: none;
 }
 
 .task__circle:active {
@@ -49,5 +59,35 @@
 .task__circle_type_locked {
     background-color: gray;
     box-shadow: 0 7px #999;
+}
+
+.task__hint {
+    padding: 20px;
+    width: 300px;
+    height: 100%;
+    overflow: hidden;
+    background-color: darkgray;
+    position: absolute;
+    bottom: -105px;
+    z-index: 1;
+    border-radius: 10px;
+    border: 2px solid gray;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    transition: 0.3s;
+    transform:translateY(-50px) scaleY(0) scaleX(0)
+}
+
+@keyframes popup {
+    0% {
+        transform:translateY(-50px) scaleY(0) scaleX(0);
+    }
+    100% {
+        transform:translateY(0) scaleY(100%) scaleX(100%);
+    }
+}
+.task__hint_visible {
+    transform:translateY(0) scaleY(100%) scaleX(100%);
 }
 

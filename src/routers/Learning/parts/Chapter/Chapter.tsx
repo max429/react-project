@@ -2,7 +2,8 @@ import React, {FC} from 'react';
 import {Task, TaskState} from "../Task/Task";
 import './Chapter.css'
 import {IChapter} from "../../../../interfaces/chapters.interface";
-import {IUser} from "../../../../interfaces/test.interface";
+import {IUser} from "../../../../interfaces/user.interface";
+
 
 interface IProps {
     data: IChapter;
@@ -33,7 +34,7 @@ export const Chapter: FC<IProps> = ({data, index, userData}) => {
             let taskState: TaskState = 'locked';
 
             if (!passedTasks?.length && !index && !taskIndex ||
-                currentTask.taskId === task.id && currentTask.chapterId === id) {
+                currentTask?.taskId === task.id && currentTask.chapterId === id) {
                 taskState = 'current';
             }  else if (passedTasks?.length) {
                 for (let i = 0; i < passedTasks.length; i++) {
@@ -43,7 +44,7 @@ export const Chapter: FC<IProps> = ({data, index, userData}) => {
                     }
                 }
             }
-            return (<Task margin={margin} key={task.id} taskState={taskState} data={task}/>)
+            return (<Task margin={margin} key={task.id} taskState={taskState} data={task} chapterId={data.id}/>)
         })}
     </div>)
 }

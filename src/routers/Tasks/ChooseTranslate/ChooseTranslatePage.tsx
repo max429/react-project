@@ -44,7 +44,7 @@ export const ChooseTranslatePage = () => {
     }
 
     useEffect(() => {
-        fetchWordsForTask({count: words.length * NUMBER_OF_VARIANTS}).then((newWords) => {
+        fetchWordsForTask({count: words?.length * NUMBER_OF_VARIANTS}).then((newWords) => {
             setWords(words.map((item) => {
                 let id = 1;
                 const variants = [{id, wordEn: item.wordEn, wordRu: item.wordRu, correct: true}];
@@ -89,7 +89,6 @@ export const ChooseTranslatePage = () => {
                                       if (activeVariant < words.length - 1) {
                                           setActiveVariant(activeVariant + 1);
                                       } else {
-                                          console.log(1);
                                           setModalVisible(true);
                                       }
                                   }, 500)
