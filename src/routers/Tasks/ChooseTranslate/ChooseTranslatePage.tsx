@@ -3,10 +3,11 @@ import './ChooseTranslatePage.css'
 import {useNavigate} from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import {IChapterTaskWord, IChapterTaskWordVariant} from "../../../interfaces/chapters.interface";
-import classNames from "classnames";;
+import classNames from "classnames";
 import {fetchWordsForTask} from "../../../redux/actions/words.actions";
 import {shuffle} from "../../../utilities";
 import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
+import ARROW_BACK from '../../../images/arrow_back.png';
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -14,10 +15,11 @@ interface IStateProps {
 
 type Answer = 'correct' | 'incorrect' | null;
 
-const Card = ({data, onClick, answer} : {data: IChapterTaskWordVariant; onClick: any; answer: 'correct' | 'incorrect' | null}) => {
+const Card = ({data, onClick, answer, last} : {data: IChapterTaskWordVariant; onClick: any; answer: 'correct' | 'incorrect' | null; last: boolean}) => {
     return (<div className={classNames('card', 'unselectable', {
         card_incorrect: answer === 'incorrect',
         card_correct: answer === 'correct',
+        'card_no-margin-bottom': last,
     })} onClick={onClick}>
         {data.wordEn}
     </div>)
@@ -56,32 +58,39 @@ export const ChooseTranslatePage = () => {
     }
 
     return (<div className={'translate-card-container'}>
+        <div className={'translate-card-header'}>
+            <div onClick={() => navigate(-1)} className={'translate-card-header__back-button'}>
+                <img alt={'Назад'} src={ARROW_BACK}/>
+            </div>
+            <ProgressBar
+                data={answers.map((item) => item.answer === 'correct')}
+                length={words.length}/>
+        </div>
+        <div className={'translate-card-main'}>
+              <span className={'translate-card-main__text'}>
+                    {state.words[activeVariant].wordRu}
+              </span>
+        </div>
+        <div className={'translate-card-footer'}>
+            {words[activeVariant].variants.map((item, index) => {
+                const answer = answers[activeVariant];
+                return (<Card key={item.id}
+                              answer={item.id === answer?.id ? answer.answer : null}
+                              data={item}
+                              last={words[activeVariant].variants.length - 1 === index}
+                              onClick={() => {
+                                  const answer = item.correct ? 'correct' : 'incorrect';
+                                  setAnswers(answers.concat({id: item.id, answer}))
+                                  setTimeout(() => {
+                                      if (activeVariant !== words.length - 1) {
+                                          setActiveVariant(activeVariant + 1);
+                                      } else {
 
-        <button onClick={() => navigate(-1)} className={'back-button'}>
-            Назад
-        </button>
-        <ProgressBar
-            data={answers.map((item) => item.answer === 'correct')}
-            length={words.length}/>
-        <span style={{fontSize: 24, marginBottom: 20}}>
-             {state.words[activeVariant].wordRu}
-        </span>
-        {words[activeVariant].variants.map((item) => {
-            const answer = answers[activeVariant];
-            return (<Card key={item.id}
-                          answer={item.id === answer?.id ? answer.answer : null}
-                          data={item}
-                          onClick={() => {
-                const answer = item.correct ? 'correct' : 'incorrect';
-                setAnswers(answers.concat({id: item.id, answer}))
-                setTimeout(() => {
-                    if (activeVariant !== words.length - 1) {
-                        setActiveVariant(activeVariant + 1);
-                    } else {
+                                      }
+                                  }, 500)
+                              }}/>)
+            })}
+        </div>
 
-                    }
-                }, 500)
-            }}/>)
-        })}
     </div>)
 }

@@ -1,15 +1,34 @@
-.back-button {
-    position: absolute;
-    top: 12px;
-    left: 0;
+.translate-card-header__back-button {
+    margin-right: 10px;
+    cursor: pointer;
 }
 .translate-card-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
     height: 100%;
     position: relative;
+}
+.translate-card-header {
+    display: flex;
+    flex: 0.5;
+    align-items: center;
+}
+.translate-card-main {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+}
+.translate-card-main__text {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.translate-card-footer {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
 }
 .card {
     border: #999999 solid 1px;
@@ -18,6 +37,12 @@
     border-radius: 10px;
     cursor: pointer;
     font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card_no-margin-bottom {
+    margin-bottom: 0;
 }
 
 .card_correct {
