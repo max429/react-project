@@ -3,10 +3,13 @@
     {
       "name": "dfsfdsfs",
       "id": 1677675315369,
-      "passedTasks": [],
-      "currentTask": {
+      "passedTasks": [{
         "chapterId": 1,
         "taskId": 1
+      }],
+      "currentTask": {
+        "chapterId": 1,
+        "taskId": 2
       },
       "experience": 0,
       "dayExperience": 0,
@@ -55,10 +58,17 @@
         "words": [{
             "id": 1,
             "wordRu": "отношения",
-            "wordEn": "relationship",
-            "variants": []
+            "wordEn": "relationship"
+        }, {
+          "id": 2,
+          "wordRu": "семья",
+          "wordEn": "family"
+        }, {
+          "id": 3,
+          "wordRu": "родственник",
+          "wordEn": "relative"
         }],
-        "type": "choose-translate"
+        "type": "collect-word"
       }, {
         "id": 3,
         "words": [{}, {}, {}, {}, {}],

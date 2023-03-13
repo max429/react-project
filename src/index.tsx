@@ -11,6 +11,8 @@ import {ErrorPage} from "./pages/ErrorPage/ErrorPage";
 import {Learning} from "./routers/Learning/Learning";
 import {Profile} from "./routers/Profile/Profile";
 import {ChooseTranslatePage} from "./routers/Tasks/ChooseTranslate/ChooseTranslatePage";
+import {FindWordPage} from "./routers/Tasks/FindWord/FindWordPage";
+import {CollectWordPage} from "./routers/Tasks/CollectWord/CollectWordPage";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
             {
                 path: '/choose-translate',
                 element: <ChooseTranslatePage/>,
+            },
+            {
+                path: '/find-word',
+                element: <FindWordPage/>,
+            },
+            {
+                path: '/collect-word',
+                element: <CollectWordPage/>,
             }
         ]
     },

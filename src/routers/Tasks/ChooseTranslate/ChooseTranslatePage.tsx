@@ -76,7 +76,7 @@ export const ChooseTranslatePage = () => {
               </span>
         </div>
         <div className={'translate-card-footer'}>
-            {words[activeVariant].variants.map((item, index) => {
+            {words[activeVariant].variants?.map((item, index) => {
                 const answer = answers[activeVariant];
                 return (<Card key={item.id}
                               answer={item.id === answer?.id ? answer.answer : null}

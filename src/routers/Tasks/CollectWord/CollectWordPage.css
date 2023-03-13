@@ -1,0 +1,67 @@
+.collect-word {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.word {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+.answer-field {
+    display: flex;
+    background-color: #e8e8e8;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.answer-field__item {
+    all: unset;
+    display: flex;
+    width: 40px;
+    height: 50px;
+    background-color: white;
+    margin-right: 10px;
+    border-radius: 10px;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+}
+.answer-field__item_filled {
+    cursor: pointer;
+}
+.answer-field__item_correct {
+    color: white;
+    background-color: green;
+    cursor: default;
+}
+.answer-field__item_incorrect {
+    color: white;
+    background-color: red;
+}
+.letters {
+  display: flex;
+}
+.letters__content {
+    width: 40px;
+    height: 50px;
+    background-color: #e8e8e8;
+    margin-right: 10px;
+    border-radius: 7px;
+}
+.letters__content-letter {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgrey;
+    margin-right: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 24px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
