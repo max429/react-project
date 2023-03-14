@@ -13,6 +13,7 @@ import {Profile} from "./routers/Profile/Profile";
 import {ChooseTranslatePage} from "./routers/Tasks/ChooseTranslate/ChooseTranslatePage";
 import {FindWordPage} from "./routers/Tasks/FindWord/FindWordPage";
 import {CollectWordPage} from "./routers/Tasks/CollectWord/CollectWordPage";
+import {LearningCardsPage} from "./routers/Tasks/LearningCards/LearningCardsPage";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: '/collect-word',
                 element: <CollectWordPage/>,
+            },
+            {
+                path: '/learning-card',
+                element: <LearningCardsPage/>,
             }
         ]
     },

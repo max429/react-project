@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useLocation, useNavigate, useNavigation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
 import './CollectWordPage.css';
 import {shuffle} from "../../../utilities";

@@ -1,0 +1,32 @@
+.learning-cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.learning-cards-container__word-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.learning-cards-container__word-ru {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.learning-cards-container__word-en-container {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+.learning-cards-container__sound-button {
+    all: unset;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+}
+.learning-cards-container__sound-button-img {
+    width: 25px;
+    height: 25px;
+}

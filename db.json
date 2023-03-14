@@ -6,10 +6,13 @@
       "passedTasks": [{
         "chapterId": 1,
         "taskId": 1
+      },{
+        "chapterId": 1,
+        "taskId": 2
       }],
       "currentTask": {
         "chapterId": 1,
-        "taskId": 2
+        "taskId": 3
       },
       "experience": 0,
       "dayExperience": 0,
@@ -71,8 +74,12 @@
         "type": "collect-word"
       }, {
         "id": 3,
-        "words": [{}, {}, {}, {}, {}],
-        "type": "choose-translate"
+        "words": [{
+          "id": 1,
+          "wordRu": "семья",
+          "wordEn": "family"
+        }, {}, {}, {}, {}],
+        "type": "learning-card"
       },
         {
           "id": 4,
