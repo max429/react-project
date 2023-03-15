@@ -1,4 +1,5 @@
 {
+  "homepage": "http://max429.github.io/react-project",
   "name": "reactproject",
   "version": "1.0.0",
   "description": "",
@@ -8,7 +9,9 @@
     "dev": "webpack serve --open",
     "build": "webpack --mode production --progress",
     "tscheck": "tsc",
-    "server": "json-server -w ./db.json -d 0"
+    "server": "json-server -w ./db.json -d 0",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +24,7 @@
     "@types/react-dom": "^18.0.11",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "typescript": "^4.9.5",
