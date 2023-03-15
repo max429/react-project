@@ -5,7 +5,7 @@ module.exports = {
     entry: './src/index.tsx',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './build'),
         filename: '[name].[contenthash].js',
         publicPath: '/'
     },
@@ -34,7 +34,7 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.resolve(__dirname, './dist')
+            directory: path.resolve(__dirname, './build')
         },
         historyApiFallback: true,
     },
