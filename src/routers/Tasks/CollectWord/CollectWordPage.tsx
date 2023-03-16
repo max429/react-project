@@ -4,6 +4,8 @@ import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
 import './CollectWordPage.css';
 import {shuffle} from "../../../utilities";
 import classNames from "classnames";
+import {fetchWordsForTask} from "../../../redux/actions/words.actions";
+import {Loading} from "../../../components/Loading/Loading";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -14,7 +16,11 @@ export const CollectWordPage = () => {
     const navigate = useNavigate();
     const {state}: {state: IStateProps} = location;
     const [currentWord, setCurrentWord] = useState(0);
-    const {wordEn, wordRu} = state.words[currentWord];
+
+
+    const {wordEn, wordRu} = state.words[currentWord] || {wordEn: '', wordRu: ''};
+
+
 
     const [answer, setAnswer] = useState<{index: number;
         value: string | null;
@@ -47,9 +53,10 @@ export const CollectWordPage = () => {
         const keyDownHandler = (event: KeyboardEvent) => {
             const letterIndex = letters.findIndex((item) => item.value === event.key);
             const answerIndex = answer.findIndex((item) => !item.value);
-            if (event.key === 'Backspace' && answerIndex > 0) {
-                letters[answer[answerIndex - 1].index] = answer[answerIndex - 1];
-                answer[answerIndex - 1] = {index: 0, value: null};
+            const answerDeleteIndex = answer.findLastIndex((item) => !!item.value && !item.result);
+            if (event.key === 'Backspace' && answerDeleteIndex !== -1) {
+                letters[answer[answerDeleteIndex].index] = answer[answerDeleteIndex];
+                answer[answerDeleteIndex] = {index: 0, value: null};
                 setAnswer([...answer]);
             } else if (letterIndex !== -1) {
 

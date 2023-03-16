@@ -7,7 +7,7 @@
 }
 .word {
     margin-bottom: 30px;
-    font-size: 24px;
+    font-size: 28px;
 }
 .answer-field {
     display: flex;
@@ -24,7 +24,7 @@
     background-color: white;
     margin-right: 10px;
     border-radius: 10px;
-    font-size: 24px;
+    font-size: 28px;
     align-items: center;
     justify-content: center;
 }
@@ -60,7 +60,7 @@
     margin-right: 10px;
     border-radius: 7px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
