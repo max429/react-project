@@ -1,6 +1,6 @@
-import FAMILY_IMAGE from '../images/family.png';
+import ARROW_BACK from '../images/arrow_back.png';
 export class R {
    static images = {
-       family: FAMILY_IMAGE
+       arrow_back: ARROW_BACK
    };
 }

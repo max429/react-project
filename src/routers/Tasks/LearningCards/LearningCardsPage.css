@@ -4,7 +4,40 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    position: relative;
 }
+.learning-cards-container__next-button {
+    all: unset;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.learning-cards-container__next-button_position_left {
+    left: 0;
+}
+
+.learning-cards-container__next-button_position_right {
+    right: 0;
+}
+
+.learning-cards-container__next-button-image {
+    width: 30px;
+
+}
+.learning-cards-container__next-button-image_rotate {
+    rotate: 180deg;
+}
+
+
 .learning-cards-container__word-image {
     width: 300px;
     height: 300px;
@@ -26,7 +59,8 @@
     display: flex;
     align-items: center;
 }
-.learning-cards-container__sound-button-img {
+.learning-cards-container__sound-button-image {
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }

@@ -12,10 +12,11 @@ export interface IChapterTask {
 }
 
 export interface IChapterTaskWord {
-    id: number,
-    wordRu: string,
-    wordEn: string,
-    variants: IChapterTaskWordVariant[]
+    id: number;
+    wordRu: string;
+    wordEn: string;
+    variants: IChapterTaskWordVariant[];
+    imgLink: string;
 }
 
 export interface IChapterTaskWordVariant {

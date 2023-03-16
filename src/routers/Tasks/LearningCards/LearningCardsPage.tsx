@@ -12,8 +12,22 @@ export const LearningCardsPage = () => {
     const [activeWord, setActiveWord] = useState(0);
     useEffect(() => {
     }, [])
-    return (<div className={'learning-cards-container'}>
-        <img src={R.images.family} className={'learning-cards-container__word-image'} alt={'Изображение'}/>
+    return (<>
+        <div className={'learning-cards-container'}>
+            {activeWord !== 0 && <button
+                className={'learning-cards-container__next-button learning-cards-container__next-button_position_left'}
+                onClick={() => {
+                setActiveWord(activeWord - 1)
+            }}>
+                <img alt={'Назад'} src={R.images.arrow_back} className={'learning-cards-container__next-button-image'} draggable={false}/>
+            </button>}
+            {activeWord !== words.length - 1 &&
+                <button className={'learning-cards-container__next-button learning-cards-container__next-button_position_right'} onClick={() => {
+                setActiveWord(activeWord + 1)
+            }}>
+                <img alt={'Дальше'} draggable={false} src={R.images.arrow_back} className={'learning-cards-container__next-button-image learning-cards-container__next-button-image_rotate'}/>
+            </button>}
+        <img src={words[activeWord].imgLink} className={'learning-cards-container__word-image'} alt={'Изображение'}/>
         <div className={'learning-cards-container__word-ru'}>
             {words[activeWord].wordRu}
         </div>
@@ -21,11 +35,13 @@ export const LearningCardsPage = () => {
             {words[activeWord].wordEn}
             <button onClick={() => {
                 const synth = window.speechSynthesis;
-                const utterance = new SpeechSynthesisUtterance(words[0].wordEn);
+                const utterance = new SpeechSynthesisUtterance(words[activeWord].wordEn);
                 synth.speak(utterance)
             }} className={'learning-cards-container__sound-button'}>
-                <img src={VOLUME_UP}  alt={'Озвучить'} className={'learning-cards-container__sound-button-img'}/>
+                <img src={VOLUME_UP}  alt={'Озвучить'} className={'learning-cards-container__sound-button-image'} draggable={false}/>
             </button>
         </div>
-    </div>)
+    </div>
+
+    </>)
 }
