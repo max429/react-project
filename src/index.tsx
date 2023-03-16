@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {
-    createBrowserRouter,
+    createBrowserRouter, createHashRouter,
     RouterProvider,
 } from "react-router-dom";
 import {Root} from "./routers/Root/Root";
@@ -15,7 +15,7 @@ import {FindWordPage} from "./routers/Tasks/FindWord/FindWordPage";
 import {CollectWordPage} from "./routers/Tasks/CollectWord/CollectWordPage";
 import {LearningCardsPage} from "./routers/Tasks/LearningCards/LearningCardsPage";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         element: <Root/>,
