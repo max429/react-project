@@ -46,8 +46,13 @@ export const CollectWordPage = () => {
     useEffect(() => {
         const keyDownHandler = (event: KeyboardEvent) => {
             const letterIndex = letters.findIndex((item) => item.value === event.key);
-            if (letterIndex !== -1) {
-                const answerIndex = answer.findIndex((item) => !item.value);
+            const answerIndex = answer.findIndex((item) => !item.value);
+            if (event.key === 'Backspace' && answerIndex > 0) {
+                letters[answer[answerIndex - 1].index] = answer[answerIndex - 1];
+                answer[answerIndex - 1] = {index: 0, value: null};
+                setAnswer([...answer]);
+            } else if (letterIndex !== -1) {
+
                 answer[answerIndex] = {...letters[letterIndex], result: null};
                 letters[letterIndex] = {...letters[letterIndex], value: null};
                 setAnswer([...answer]);
@@ -55,13 +60,14 @@ export const CollectWordPage = () => {
                     validation();
                 }
             }
+
         };
 
         document.addEventListener('keydown', keyDownHandler);
         return () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
-    }, [letters])
+    }, [letters, answer])
 
     const validation = () => {
         let nextStep = true;
