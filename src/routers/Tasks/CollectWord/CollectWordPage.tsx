@@ -41,7 +41,27 @@ export const CollectWordPage = () => {
     useEffect(() => {
         setLetters(getLettersInitialData());
         setAnswer(getAnswerInitialData())
-    }, [currentWord])
+    }, [currentWord]);
+
+    useEffect(() => {
+        const keyDownHandler = (event: KeyboardEvent) => {
+            const letterIndex = letters.findIndex((item) => item.value === event.key);
+            if (letterIndex !== -1) {
+                const answerIndex = answer.findIndex((item) => !item.value);
+                answer[answerIndex] = {...letters[letterIndex], result: null};
+                letters[letterIndex] = {...letters[letterIndex], value: null};
+                setAnswer([...answer]);
+                if (answer.every((item) => !!item.value)) {
+                    validation();
+                }
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, [letters])
 
     const validation = () => {
         let nextStep = true;
