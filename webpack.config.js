@@ -6,7 +6,7 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: '/react-project/[name].[contenthash].js',
+        filename: '[name].[contenthash].js',
         publicPath: '/'
     },
     module: {
