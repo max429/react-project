@@ -34,7 +34,7 @@ export const Task: FC<IProps> = ({margin, taskState, data, chapterId}) => {
             {taskState === 'current' && <div className={'task__top-hint'} >
                 Начать
             </div>}
-            <NavLink to={'/' + type} onClick={(e) => {
+            <NavLink to={'/learning/' + type} onClick={(e) => {
                  if (taskState === 'locked') {
                     e.preventDefault();
                     setTimeout(() => {

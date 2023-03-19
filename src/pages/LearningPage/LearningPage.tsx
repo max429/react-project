@@ -1,11 +1,11 @@
 import React from 'react';
 import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
 import {Loading} from "../../components/Loading/Loading";
-import './Learning.css'
+import './LearningPage.css'
 import {Chapter} from "./parts/Chapter/Chapter";
 import {useAppSelector} from "../../hooks/redux";
 
-export const Learning = () => {
+export const LearningPage = () => {
     const {data = [], isLoading} = useGetChaptersQuery(null);
     const user = useAppSelector((state) => state.userReducer.data);
 

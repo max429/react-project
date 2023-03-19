@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import './Profile.css';
+import './ProfilePage.css';
 
-export const Profile = () => {
+export const ProfilePage = () => {
     const [name, setName] = useState('');
     return (<div className={'profile'}>
         <div>

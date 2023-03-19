@@ -1,12 +1,13 @@
-import React, {useEffect} from "react";
-import './Root.css';
+import React from 'react';
+import './Layout.css';
 import {Outlet, useNavigate} from "react-router-dom";
-import {NavItem} from "./parts/NavItem";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useEffect} from "react";
 import {fetchUser} from "../../redux/actions/user.actions";
-import {Loading} from "../../components/Loading/Loading";
+import {Loading} from "../Loading/Loading";
+import {NavItem} from "./parts/NavItem";
 
-export const Root = () => {
+export const Layout = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -26,15 +27,15 @@ export const Root = () => {
     }
 
     return (<div className={'container'}>
-            <nav>
-                <div className={'filler'}/>
-                <ul className={'sidebar'}>
-                    <NavItem text={'Обучение'} link='/learning'/>
-                    <NavItem text={'Профиль'} link='/profile'/>
-                </ul>
-            </nav>
-            <div className={'content'}>
-                {<Outlet/>}
-            </div>
+        <nav>
+            <div className={'filler'}/>
+            <ul className={'sidebar'}>
+                <NavItem text={'Обучение'} link='/learning'/>
+                <NavItem text={'Профиль'} link='/profile'/>
+            </ul>
+        </nav>
+        <div className={'content'}>
+            {<Outlet/>}
+        </div>
     </div>)
 }
