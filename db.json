@@ -9,10 +9,13 @@
       },{
         "chapterId": 1,
         "taskId": 2
+      }, {
+        "chapterId": 1,
+        "taskId": 3
       }],
       "currentTask": {
         "chapterId": 1,
-        "taskId": 3
+        "taskId": 4
       },
       "experience": 0,
       "dayExperience": 0,
@@ -66,7 +69,7 @@
           "id": 2,
           "wordRu": "семья",
           "wordEn": "family"
-        }, {
+        },  {
           "id": 3,
           "wordRu": "родственник",
           "wordEn": "relative"
@@ -105,8 +108,12 @@
       },
         {
           "id": 4,
-          "words": [{}, {}, {}, {}, {}],
-          "type": "choose-translate"
+          "words": [{
+            "id": 1,
+            "wordRu": "помощь",
+            "wordEn": "help"
+          }, {}, {}, {}, {}],
+          "type": "find-word"
         }, {
           "id": 5,
           "words": [{}, {}, {}, {}, {}],

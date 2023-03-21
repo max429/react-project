@@ -17,6 +17,7 @@ export const LearningPage = () => {
 
     return (
         <div>
+
             <main className={'learning'}>
                 {data.map((item, chapterIndex) => {
                     return (<Chapter key={item.id} index={chapterIndex} data={item} userData={user}/>)

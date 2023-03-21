@@ -1,0 +1,30 @@
+.field-row {
+    display: flex;
+    user-select: none;
+}
+.field-column {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 20px;
+    position: relative;
+}
+.field-column:hover {
+    background-color: #999999;
+    color: white;
+}
+.field-column_selected {
+    background-color: green;
+    color: white;
+}
+.arrow{
+    stroke:rgb(0,0,0);
+    stroke-width:2;
+    marker-end:url(#markerArrow)
+}
