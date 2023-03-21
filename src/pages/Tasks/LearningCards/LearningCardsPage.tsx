@@ -4,7 +4,7 @@ import {useLocation} from "react-router-dom";
 import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
 import './LearningCardsPage.css'
 import {R} from "../../../resources/R";
-
+import {TaskContainer} from "../../../components/Container/Container";
 
 export const LearningCardsPage = () => {
     const location = useLocation();
@@ -12,8 +12,8 @@ export const LearningCardsPage = () => {
     const [activeWord, setActiveWord] = useState(0);
     useEffect(() => {
     }, [])
-    return (<>
-        <div className={'learning-cards-container'}>
+    return (
+        <TaskContainer>
             {activeWord !== 0 && <button
                 className={'learning-cards-container__next-button learning-cards-container__next-button_position_left'}
                 onClick={() => {
@@ -41,7 +41,5 @@ export const LearningCardsPage = () => {
                 <img src={VOLUME_UP}  alt={'Озвучить'} className={'learning-cards-container__sound-button-image'} draggable={false}/>
             </button>
         </div>
-    </div>
-
-    </>)
+    </TaskContainer>)
 }

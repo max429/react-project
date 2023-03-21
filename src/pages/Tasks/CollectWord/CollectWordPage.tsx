@@ -6,6 +6,7 @@ import {shuffle} from "../../../utilities";
 import classNames from "classnames";
 import {fetchWordsForTask} from "../../../redux/actions/words.actions";
 import {Loading} from "../../../components/Loading/Loading";
+import {TaskContainer} from "../../../components/Container/Container";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -108,7 +109,7 @@ export const CollectWordPage = () => {
         }
     }
 
-    return (<div className={'collect-word'}>
+    return (<TaskContainer>
         <span className={'word'}>
             {wordRu}
         </span>
@@ -146,5 +147,5 @@ export const CollectWordPage = () => {
                 </div>
             })}
         </div>
-    </div>)
+    </TaskContainer>)
 }

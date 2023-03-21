@@ -1,11 +1,3 @@
-.learning-cards-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    position: relative;
-}
 .learning-cards-container__next-button {
     all: unset;
     position: absolute;

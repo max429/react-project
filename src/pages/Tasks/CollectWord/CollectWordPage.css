@@ -1,10 +1,3 @@
-.collect-word {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
 .word {
     margin-bottom: 30px;
     font-size: 28px;
