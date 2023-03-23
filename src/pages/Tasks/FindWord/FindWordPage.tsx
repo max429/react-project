@@ -3,9 +3,10 @@ import {Loading} from "../../../components/Loading/Loading";
 import {TaskContainer} from "../../../components/Container/Container";
 import './FindWordPage.css';
 import classNames from "classnames";
+import {R} from "../../../resources/R";
 
 interface ILetter {
-    letter: string;
+    letter: string | null;
     id: string;
     position: {
         row: number;
@@ -54,15 +55,21 @@ const Line: FC<{direction: LineDirection}> = ({direction}) => {
 
 export const FindWordPage = () => {
     const testData = {
-        wordEn: 'help',
-        wordRu: 'помощь',
+        wordEn: 'family',
+        wordRu: 'семья',
     }
 
+
+    const answerWord = testData.wordEn;
+    const translateWord = testData.wordRu;
+    const alphabet = R.constants.englishAlphabet;
+
     const [field, setField] = useState<ILetter[][]>();
+    const [answerField] = useState(Array.apply(null, Array(answerWord.length)));
     const [selectedLetters, setSelectedLetters] = useState<ILetter[]>([]);
+    const [answer] = useState<ILetter[]>([]);
     const [mouseDown, setMouseDown] = useState(false);
-
-
+    const [result, setResult] = useState<'correct' | 'incorrect' | null>(null);
 
     function getAvailableDirections(position: {row: number; column: number}, size: number, oldDirection?: LineDirection):LineDirection[] {
         const availableDirections: LineDirection[] = [];
@@ -92,8 +99,7 @@ export const FindWordPage = () => {
 
     const initializeField = () => {
         const newField:ILetter[][]  = [];
-        let alphabet = "abcdefghijklmnopqrstuvwxyz";
-        const size = testData.wordEn.length;
+        const size = answerWord.length;
         for (let i = 0; i < size; i ++) {
             newField.push([]);
             for (let j = 0; j < size; j++) {
@@ -111,9 +117,10 @@ export const FindWordPage = () => {
             column: Math.floor(Math.random() * (size - 1))};
         let direction = changeDirection(position, size);
         let i = 0;
-        while (i < testData.wordEn.length) {
+        while (i < answerWord.length) {
             newField[position.row][position.column] =
-                {...newField[position.row][position.column], letter: testData.wordEn[i]}
+                {...newField[position.row][position.column], letter: answerWord[i]}
+            answer.push({...newField[position.row][position.column], letter: answerWord[i]})
 
             switch (direction) {
                 case "down":
@@ -141,76 +148,111 @@ export const FindWordPage = () => {
         setField(newField);
     }
 
-    console.log('selected', selectedLetters);
-
     useEffect(() => {
         initializeField();
     }, [])
 
+    useEffect(() =>{
+        if (selectedLetters.length === answerWord.length && !result) {
+            validation();
+        }
+    }, [selectedLetters])
+
     if (!field) return <Loading/>
 
-    const handleSelection = (index: number, item: ILetter) => {
-        if (index === -1) {
-            setSelectedLetters(selectedLetters.concat(item));
+    const validation = () => {
+        let answer = '';
+        selectedLetters.forEach((item) => {
+            answer += item.letter;
+        })
+        const isValid = answer === answerWord;
+        setResult(isValid ? 'correct' : 'incorrect')
+    }
+
+
+
+    const handleSelection = (selectedIndex: number, item: ILetter, rowIndex: number, columnIndex: number) => {
+        const lastSelectedLetter = selectedLetters.length ? selectedLetters[selectedLetters.length - 1] : null
+        if (selectedIndex === -1) {
+                if (!lastSelectedLetter || !!lastSelectedLetter && (
+                    Math.abs(lastSelectedLetter.position.row - rowIndex) === 1 && lastSelectedLetter.position.column === columnIndex
+                    || lastSelectedLetter.position.row === rowIndex && Math.abs(lastSelectedLetter.position.column - columnIndex) === 1)) {
+                    const newSelectedLetters = selectedLetters.concat(item);
+                    setSelectedLetters(newSelectedLetters);
+                }
         } else {
-            selectedLetters.splice(index, 1);
-            setSelectedLetters([...selectedLetters])
+            selectedLetters.splice(selectedIndex, selectedLetters.length);
+            setSelectedLetters([...selectedLetters]);
         }
     }
 
     return <TaskContainer>
-        {testData.wordRu}
-        <div style={{
-            display: 'flex'
-        }}>
-            {selectedLetters.map((item) => {
-                return <div key={item.id}>
-                    {item.letter}
+        <span className={'text'}>
+            {translateWord}
+        </span>
+        <div className={'answer-field-container'}>
+            {answerField.map((_, index) => {
+                return <div className={classNames('answer-field-item', {
+                   'answer-field__item_correct': result === 'correct',
+                      'answer-field__item_incorrect': result === 'incorrect'
+                })} key={index}>
+                    {selectedLetters[index]?.letter}
                 </div>
             })}
         </div>
-
-        {field.map((row, index) => {
-            return (<div  key={index} className={'field-row'}>
-                {(row.map((column, columnIndex) => {
-                    const selectedIndex = selectedLetters.findIndex((selLetter) => selLetter.id === column.id);
-                    const isHasLine = selectedIndex !== -1 && selectedIndex !== selectedLetters.length - 1;
-                    let direction: LineDirection = 'left';
-                    if (isHasLine) {
-                        if (selectedLetters[selectedIndex + 1].position.row < selectedLetters[selectedIndex].position.row) {
-                            direction = 'up';
-                        } else if (selectedLetters[selectedIndex + 1].position.row > selectedLetters[selectedIndex].position.row) {
-                            direction = 'down';
-                        } else if (selectedLetters[selectedIndex + 1].position.column > selectedLetters[selectedIndex].position.column) {
-                            direction = 'right';
+        <div onMouseLeave={() => {setMouseDown(false)}}>
+            {field.map((row, rowIndex) => {
+                return (<div  key={rowIndex} className={'field-row'}>
+                    {(row.map((column, columnIndex) => {
+                        const letters = result === 'incorrect' ? answer : selectedLetters;
+                        const selectedIndex = letters.findIndex((selLetter) => selLetter.id === column.id);
+                        const isHasLine = selectedIndex !== -1 && selectedIndex !== letters.length - 1;
+                        let direction: LineDirection = 'left';
+                        if (isHasLine) {
+                            if (letters[selectedIndex + 1].position.row < letters[selectedIndex]?.position.row) {
+                                direction = 'up';
+                            } else if (letters[selectedIndex + 1]?.position.row > letters[selectedIndex].position.row) {
+                                direction = 'down';
+                            } else if (letters[selectedIndex + 1]?.position.column > letters[selectedIndex]?.position.column) {
+                                direction = 'right';
+                            }
                         }
-                    }
-                return <div ref={el => {
-                    const data = el?.getBoundingClientRect();
-                    field[index][columnIndex].coordinates = {
-                        x: data?.x,
-                        y: data?.y
-                    }
-                }} className={classNames('field-column', {
-                    'field-column_selected': selectedIndex !== -1,
-                })}
-                            onMouseUp={() => {
-                                setMouseDown(false)
-                            }}
-                            onMouseDown={() =>{
-                                setMouseDown(true);
-                                handleSelection(selectedIndex, column);
-                            }}
-                            onMouseEnter={() => {
-                                if (mouseDown) {
-                                    handleSelection(selectedIndex, column);
-                                }
-                }} key={column.id}>
-                   {isHasLine && <Line direction={direction}/>}
-                    {column.letter}
-                </div>
-            }))}
-            </div>)
-        })}
+                        return <button ref={el => {
+                            const data = el?.getBoundingClientRect();
+                            field[rowIndex][columnIndex].coordinates = {
+                                x: data?.x,
+                                y: data?.y
+                            }
+                        }} disabled={!!result} className={classNames('field-column', {
+                            'field-column_selected': selectedIndex !== -1,
+                            'field-column_incorrect': selectedIndex !== -1 && result === 'incorrect',
+                            'field-column_disabled': !!result,
+                        })}
+                                       onMouseUp={() => {
+                                           setMouseDown(false)
+                                       }}
+                                       onMouseDown={() =>{
+                                           handleSelection(selectedIndex, column, rowIndex, columnIndex);
+                                           setMouseDown(true);
+                                       }}
+                                       onMouseEnter={() => {
+                                           if (mouseDown) {
+                                               if (selectedIndex !== -1 && isHasLine) {
+                                                   handleSelection(selectedIndex + 1, column,
+                                                       letters[selectedIndex + 1].position.row, letters[selectedIndex + 1].position.column);
+                                               } else {
+                                                   handleSelection(selectedIndex, column, rowIndex, columnIndex);
+                                               }
+
+                                           }
+                                       }} key={column.id}>
+                            {isHasLine && <Line direction={direction}/>}
+                            {column.letter}
+                        </button>
+                    }))}
+                </div>)
+            })}
+        </div>
+
     </TaskContainer>
 }

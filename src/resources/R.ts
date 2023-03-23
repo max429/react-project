@@ -7,4 +7,8 @@ export class R {
    static images = {
        arrow_back: ARROW_BACK
    };
+    static constants = {
+        russianAlphabet: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+        englishAlphabet: 'abcdefghijklmnopqrstuvwxyz',
+    }
 }
