@@ -12,10 +12,13 @@
       }, {
         "chapterId": 1,
         "taskId": 3
+      }, {
+        "chapterId": 1,
+        "taskId": 4
       }],
       "currentTask": {
         "chapterId": 1,
-        "taskId": 4
+        "taskId": 5
       },
       "experience": 0,
       "dayExperience": 0,
@@ -98,13 +101,19 @@
           "wordEn": "father",
           "imgLink": "https://img.freepik.com/free-vector/happy-father-s-day_24908-59789.jpg?w=2000"
         }, {
-            "id": 4,
+            "id": 5,
             "wordRu": "помощь",
             "wordEn": "help",
             "imgLink": "https://img.freepik.com/premium-vector/kids-good-manners-different-situations-set-vector-son-help-mother-share-ice-cream-with-friend-girl-open-door-grandfather-give-water-grandmother-characters-flat-cartoon-illustrations_87720-4381.jpg?w=2000"
+          },
+          {
+            "id": 6,
+            "wordRu": "отношения",
+            "wordEn": "relationship",
+            "imgLink": "https://i.pinimg.com/originals/ba/f6/8b/baf68ba5d230955c930ee8e3c787421e.jpg"
           }
         ],
-        "type": "learning-card"
+        "type": "learning-cards"
       },
         {
           "id": 4,
@@ -117,7 +126,7 @@
         }, {
           "id": 5,
           "words": [{}, {}, {}, {}, {}],
-          "type": "choose-translate"
+          "type": "training-cards"
         }, {
           "id": 6,
           "words": [{}, {}, {}, {}, {}],

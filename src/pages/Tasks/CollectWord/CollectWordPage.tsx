@@ -2,10 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
 import './CollectWordPage.css';
-import {shuffle} from "../../../utilities";
+import {shuffle} from "../../../utils/array";
 import classNames from "classnames";
-import {fetchWordsForTask} from "../../../redux/actions/words.actions";
-import {Loading} from "../../../components/Loading/Loading";
 import {TaskContainer} from "../../../components/Container/Container";
 
 interface IStateProps {

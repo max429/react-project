@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import {IChapterTaskWord, IChapterTaskWordVariant} from "../../../interfaces/chapters.interface";
 import classNames from "classnames";
 import {fetchWordsForTask} from "../../../redux/actions/words.actions";
-import {shuffle} from "../../../utilities";
+import {shuffle} from "../../../utils/array";
 import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
 import ARROW_BACK from '../../../images/arrow_back.png';
 import {Modal} from "../../../components/Modal/Modal";

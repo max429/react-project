@@ -1,6 +1,8 @@
+.learning-cards-container {
+    flex-direction: row;
+}
 .learning-cards-container__next-button {
     all: unset;
-    position: absolute;
     top: 50%;
     width: 50px;
     height: 50px;
@@ -13,46 +15,21 @@
     user-select: none;
 }
 
-.learning-cards-container__next-button_position_left {
-    left: 0;
+.learning-cards-container__next-button_selection {
+    background-color: lightgray;
 }
 
-.learning-cards-container__next-button_position_right {
-    right: 0;
+.learning-cards-container__next-button_hide {
+    visibility: hidden;
+}
+
+.learning-cards-container__next-button:hover {
+    background-color: lightgray;
 }
 
 .learning-cards-container__next-button-image {
     width: 30px;
-
 }
 .learning-cards-container__next-button-image_rotate {
     rotate: 180deg;
-}
-
-
-.learning-cards-container__word-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.learning-cards-container__word-ru {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-.learning-cards-container__word-en-container {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-}
-.learning-cards-container__sound-button {
-    all: unset;
-    margin-left: 4px;
-    display: flex;
-    align-items: center;
-}
-.learning-cards-container__sound-button-image {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
 }

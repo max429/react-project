@@ -10,6 +10,7 @@ import {LearningCardsPage} from "./pages/Tasks/LearningCards/LearningCardsPage";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Layout} from "./components/Layout/Layout";
+import {TrainingCardsPage} from "./pages/Tasks/TrainingCards/TrainingCardsPage";
 
 
 const router = createHashRouter([
@@ -40,8 +41,12 @@ const router = createHashRouter([
                 element: <CollectWordPage/>,
             },
             {
-                path: '/learning/learning-card',
+                path: '/learning/learning-cards',
                 element: <LearningCardsPage/>,
+            },
+            {
+                path: '/learning/training-cards',
+                element: <TrainingCardsPage/>,
             }
         ]
     },

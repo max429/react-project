@@ -1,0 +1,56 @@
+:root{
+    --speaker-color: black;
+    --size: 0.5em;
+}
+.icon{
+    position:absolute;
+    display:block;
+    margin: auto;
+}
+
+/*THE ARTIFAKT ;) */
+.speaker {
+    width: 0;
+    height: 0;
+    background: none;
+    border-top: var(--size) solid transparent;
+    border-bottom: var(--size) solid transparent;
+    border-right: calc(var(--size) * 1.25) solid var(--speaker-color);
+}
+
+.speaker:before {
+    content: "";
+    position: absolute;
+    top: calc(var(--size) * -0.325);
+    left: 0;
+    width: calc(var(--size) * 1.45);
+    height: calc(var(--size) * 0.625);
+    background: var(--speaker-color);
+    border-radius: 3px calc(var(--size) * 0.375) calc(var(--size) * 0.375) 3px;
+}
+
+.speaker:after {
+    content: "";
+    position: absolute;
+    border-right: calc(var(--size) * 0.125) solid var(--speaker-color);
+    border-radius: 50%;
+}
+
+.speaker_animation:after {
+    animation: pump 0.1s 0.1s infinite alternate;
+}
+
+@keyframes pump {
+    from{
+        top:calc(var(--size) * -0.35);
+        right:calc(var(--size) * -1.5);
+        width:calc(var(--size) * 0.625);
+        height:calc(var(--size) * 0.625);
+    }
+    to{
+        top:calc(var(--size) * -0.45);
+        right:calc(var(--size) * -2);
+        width:calc(var(--size) * 0.875);
+        height:calc(var(--size) * 0.875);
+    }
+}
