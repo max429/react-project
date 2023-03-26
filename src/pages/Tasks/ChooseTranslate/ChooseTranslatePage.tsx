@@ -16,14 +16,14 @@ interface IStateProps {
 
 type Answer = 'correct' | 'incorrect' | null;
 
-const Card = ({data, onClick, answer, last} : {data: IChapterTaskWordVariant; onClick: any; answer: 'correct' | 'incorrect' | null; last: boolean}) => {
-    return (<div className={classNames('card', 'unselectable', {
+const Card = ({data, onClick, answer, last, disabled} : {data: IChapterTaskWordVariant; onClick: any; answer: 'correct' | 'incorrect' | null; last: boolean; disabled?: boolean}) => {
+    return (<button className={classNames('card', 'unselectable', {
         card_incorrect: answer === 'incorrect',
         card_correct: answer === 'correct',
         'card_no-margin-bottom': last,
-    })} onClick={onClick}>
+    })} onClick={onClick} disabled={disabled}>
         {data.wordEn}
-    </div>)
+    </button>)
 }
 
 const NUMBER_OF_VARIANTS = 4;
@@ -79,6 +79,7 @@ export const ChooseTranslatePage = () => {
             {words[activeVariant].variants?.map((item, index) => {
                 const answer = answers[activeVariant];
                 return (<Card key={item.id}
+                              disabled={answers.length - 1 === activeVariant}
                               answer={item.id === answer?.id ? answer.answer : null}
                               data={item}
                               last={words[activeVariant].variants.length - 1 === index}

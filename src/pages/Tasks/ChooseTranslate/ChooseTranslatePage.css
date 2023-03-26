@@ -30,6 +30,7 @@
     align-self: center;
 }
 .card {
+    all: unset;
     border: #999999 solid 1px;
     background-color: white;
     padding: 20px 24px;

@@ -22,7 +22,13 @@
       },
       "experience": 0,
       "dayExperience": 0,
-      "experienceGoal": 30
+      "experienceGoal": 30,
+      "dictionary": [{
+        "wordRu": "помощь",
+        "wordEn": "help",
+        "context": "",
+        "imgLink": ""
+      }]
     }
   ],
   "chapters": [
