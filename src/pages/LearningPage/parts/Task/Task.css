@@ -62,6 +62,13 @@
     color: green;
     animation: floating 1s linear infinite alternate;
 }
+.task__top-hint-close-button {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}
 
 @keyframes floating {
     0% {

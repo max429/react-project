@@ -57,13 +57,7 @@ export const Task: FC<IProps> = ({margin, taskState, data, chapterId}) => {
                             e.preventDefault();
                             e.stopPropagation()
                         }}>
-                        <div style={{
-                            position: "absolute",
-                            cursor: 'pointer',
-                            top: 0,
-                            right: 0,
-                            padding: 5
-                        }} onClick={() => {
+                        <div className={'task__top-hint-close-button'} onClick={() => {
                             setIsHintVisible(false);
                         }}>
                            <SvgCrossIcon/>
