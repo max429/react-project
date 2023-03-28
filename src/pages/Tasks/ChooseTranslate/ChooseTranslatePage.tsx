@@ -9,6 +9,8 @@ import {shuffle} from "../../../utils/array";
 import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
 import ARROW_BACK from '../../../images/arrow_back.png';
 import {Modal} from "../../../components/Modal/Modal";
+import {TaskContainer} from "../../../components/Container/Container";
+import {Button} from "../../../components/Button/Button";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -16,13 +18,13 @@ interface IStateProps {
 
 type Answer = 'correct' | 'incorrect' | null;
 
-const Card = ({data, onClick, answer, last, disabled} : {data: IChapterTaskWordVariant; onClick: any; answer: 'correct' | 'incorrect' | null; last: boolean; disabled?: boolean}) => {
+const Card = ({text, onClick, answer, last, disabled} : {text: string; onClick: any; answer: 'correct' | 'incorrect' | null; last: boolean; disabled?: boolean}) => {
     return (<button className={classNames('card', 'unselectable', {
         card_incorrect: answer === 'incorrect',
         card_correct: answer === 'correct',
         'card_no-margin-bottom': last,
     })} onClick={onClick} disabled={disabled}>
-        {data.wordEn}
+        {text}
     </button>)
 }
 
@@ -33,11 +35,14 @@ export const ChooseTranslatePage = () => {
     const location = useLocation();
     const {state}: {state: IStateProps} = location;
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [showFinalResult, setShowFinalResult] = useState(false);
 
     const [words, setWords] = useState(state.words);
     const [activeVariant, setActiveVariant] = useState(0);
     const [answers, setAnswers] = useState<{id: number; answer: Answer}[]>([]);
+    const [languageMode, setLanguageMode] = useState(0);
+    const guessedWordLanguage = languageMode === 1 ? 'wordRu' : 'wordEn';
+    const answerWordLanguage = languageMode !== 1 ? 'wordRu' : 'wordEn';
 
     const goBack = () => {
         navigate(-1);
@@ -45,6 +50,7 @@ export const ChooseTranslatePage = () => {
 
     useEffect(() => {
         fetchWordsForTask({count: words?.length * NUMBER_OF_VARIANTS}).then((newWords) => {
+            const newLanguageMode = Math.round(Math.random());
             setWords(words.map((item) => {
                 let id = 1;
                 const variants = [{id, wordEn: item.wordEn, wordRu: item.wordRu, correct: true}];
@@ -58,10 +64,26 @@ export const ChooseTranslatePage = () => {
                }
                 return {...item, variants: shuffle(variants)}
             }))
+            setLanguageMode(newLanguageMode);
         })
     }, []);
 
-    return (<div className={'translate-card-container'}>
+    function onCardClick(item: IChapterTaskWordVariant) {
+        const answer = item.correct ? 'correct' : 'incorrect';
+        setAnswers(answers.concat({id: item.id, answer}))
+        setTimeout(() => {
+            if (activeVariant < words.length - 1) {
+                setActiveVariant(activeVariant + 1);
+            } else {
+                setShowFinalResult(true);
+            }
+        }, 500)
+    }
+
+    return (!showFinalResult ? <div className={classNames('translate-card-container', {
+        'fade-out': answers.length === words?.length,
+        'fade-in': answers.length === 0,
+    })}>
         <div className={'translate-card-header'}>
             <div onClick={goBack} className={'translate-card-header__back-button'}>
                 <img alt={'Назад'} src={ARROW_BACK}/>
@@ -70,34 +92,46 @@ export const ChooseTranslatePage = () => {
                 data={answers.map((item) => item.answer === 'correct')}
                 length={words.length}/>
         </div>
-        <div className={'translate-card-main'}>
+        <div className={classNames('translate-card-main', {
+            'fade-out': answers.length !== activeVariant,
+            'fade-in': answers.length === activeVariant,
+        })}>
               <span className={'translate-card-main__text'}>
-                    {state.words[activeVariant].wordRu}
+                    {state.words[activeVariant][guessedWordLanguage]}
               </span>
         </div>
-        <div className={'translate-card-footer'}>
+        <div className={classNames('translate-card-footer', {
+            'fade-out': answers.length !== activeVariant,
+            'fade-in': answers.length === activeVariant,
+        })}>
             {words[activeVariant].variants?.map((item, index) => {
                 const answer = answers[activeVariant];
                 return (<Card key={item.id}
                               disabled={answers.length - 1 === activeVariant}
                               answer={item.id === answer?.id ? answer.answer : null}
-                              data={item}
+                              text={item[answerWordLanguage]}
                               last={words[activeVariant].variants.length - 1 === index}
-                              onClick={() => {
-                                  const answer = item.correct ? 'correct' : 'incorrect';
-                                  setAnswers(answers.concat({id: item.id, answer}))
-                                  setTimeout(() => {
-                                      if (activeVariant < words.length - 1) {
-                                          setActiveVariant(activeVariant + 1);
-                                      } else {
-                                          setModalVisible(true);
-                                      }
-                                  }, 500)
-                              }}/>)
+                              onClick={() => onCardClick(item)}/>)
             })}
         </div>
-        <Modal visible={modalVisible} setVisible={setModalVisible} onClose={() => setTimeout(() => goBack(), 200)}>
+      {/* <Modal visible={modalVisible} setVisible={setModalVisible} onClose={() => setTimeout(() => goBack(), 200)}>
             Правильные ответы: {`${answers.reduce((accumulator , currentValue) => accumulator + Number(currentValue.answer === 'correct'), 0)}/${answers.length}`}
-        </Modal>
-    </div>)
+        </Modal>*/}
+    </div> : <TaskContainer classes={['fade-in']}>
+            <div>
+                Задание завершено
+            </div>
+            Правильные ответы:
+            {` ${answers.reduce((accumulator , currentValue) => accumulator + Number(currentValue.answer === 'correct'), 0)}/${answers.length}`}
+        <div className={'translate-card-button-container'}>
+            <Button text={'Повторить'}
+                    className={'translate-card-button-container__left-button'}
+                    onClick={() => {
+                        setShowFinalResult(false);
+                        setAnswers([]);
+                        setActiveVariant(0);
+            }}/>
+            <Button text={'Продолжить'} onClick={goBack}/>
+        </div>
+    </TaskContainer>)
 }

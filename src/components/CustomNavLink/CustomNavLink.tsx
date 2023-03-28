@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {NavLink, NavLinkProps} from "react-router-dom";
+import {DivType} from "../../utils/types";
 
 
 interface IProps {
@@ -7,10 +8,8 @@ interface IProps {
     children: any
 }
 
-type div = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-
 export const CustomNavLink: FC<IProps & NavLinkProps> = ({children, disabled, ...props}) => {
-    return disabled ? <div {...props as div}>
+    return disabled ? <div {...props as DivType}>
         {children}
     </div> : <NavLink {...props}>
         {children}

@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    opacity: 1;
 }
 .translate-card-header {
     display: flex;
@@ -65,4 +66,32 @@
 .card:not(.card_incorrect, .card_correct):hover {
     background-color: darkgrey;
     color: white;
+}
+.translate-card-result-header {
+    display: block;
+}
+.fade-out {
+    animation: fadeOut 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+    opacity: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+.translate-card-button-container {
+    display: flex;
+    margin-top: 16px;
+}
+.translate-card-button-container__left-button {
+    margin-right: 30px;
 }

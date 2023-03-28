@@ -141,7 +141,9 @@ export const CollectWordPage = () => {
                                    letterPlace.current = -1;
                                }}
                                onDrop={() => {
-                                   addAnswerLetter(index, letterPlace.current);
+                                   if (!letter.value) {
+                                       addAnswerLetter(index, letterPlace.current);
+                                   }
                                }}
                                 onDragStart={() => {
                                 }}
