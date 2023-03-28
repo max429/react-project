@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
 import './CollectWordPage.css';
@@ -16,10 +16,12 @@ export const CollectWordPage = () => {
     const {state}: {state: IStateProps} = location;
     const [currentWord, setCurrentWord] = useState(0);
 
+    const [hideElement, setHideElement] = useState(-1);
+
+    const letterPlace = useRef<number>(-1);
+
 
     const {wordEn, wordRu} = state.words[currentWord] || {wordEn: '', wordRu: ''};
-
-
 
     const [answer, setAnswer] = useState<{index: number;
         value: string | null;
@@ -54,19 +56,13 @@ export const CollectWordPage = () => {
             const answerIndex = answer.findIndex((item) => !item.value);
             const answerDeleteIndex = answer.findLastIndex((item) => !!item.value && !item.result);
             if (event.key === 'Backspace' && answerDeleteIndex !== -1) {
+                deleteAnswerLetter(answerDeleteIndex);
                 letters[answer[answerDeleteIndex].index] = answer[answerDeleteIndex];
                 answer[answerDeleteIndex] = {index: 0, value: null};
                 setAnswer([...answer]);
             } else if (letterIndex !== -1) {
-
-                answer[answerIndex] = {...letters[letterIndex], result: null};
-                letters[letterIndex] = {...letters[letterIndex], value: null};
-                setAnswer([...answer]);
-                if (answer.every((item) => !!item.value)) {
-                    validation();
-                }
+                addAnswerLetter(answerIndex, letterIndex);
             }
-
         };
 
         document.addEventListener('keydown', keyDownHandler);
@@ -107,36 +103,73 @@ export const CollectWordPage = () => {
         }
     }
 
+    const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
+        letterPlace.current = position;
+        setTimeout(() => {
+            setHideElement(position);
+        })
+    }
+
+    const addAnswerLetter = (answerIndex: number, letterIndex: number) => {
+        answer[answerIndex] = {...letters[letterIndex], result: null};
+        letters[letterIndex] = {...letters[letterIndex], value: null};
+        setAnswer([...answer]);
+        if (answer.every((item) => !!item.value)) {
+            validation();
+        }
+    }
+
+    const deleteAnswerLetter = (index: number) => {
+        letters[answer[index].index] = answer[index];
+        answer[index] = {value: null, index: 0};
+        setLetters([...letters]);
+    }
+
     return (<TaskContainer>
         <span className={'word'}>
             {wordRu}
         </span>
         <div className={'answer-field'}>
             {answer.map((letter, index) => {
-                return <button disabled={letter.result === 'correct' || !answer[index].value} className={classNames('answer-field__item', {
+                return <div draggable className={classNames('answer-field__item', {
                     'answer-field__item_filled': !!answer[index].value,
                     'answer-field__item_correct': letter.result === 'correct',
-                    'answer-field__item_incorrect': letter.result === 'incorrect'
-                })} key={index} onClick={() => {
-                    letters[answer[index].index] = answer[index];
-                    answer[index] = {value: null, index: 0};
-                    setLetters([...letters]);
-                }}>
+                    'answer-field__item_incorrect': letter.result === 'incorrect',
+                })}
+                               key={index}
+                               onDragExit={() => {
+                                   letterPlace.current = -1;
+                               }}
+                               onDrop={() => {
+                                   addAnswerLetter(index, letterPlace.current);
+                               }}
+                                onDragStart={() => {
+                                }}
+                               onDragOver={(e) => {
+                                   e.dataTransfer.dropEffect = 'move';
+                                   e.preventDefault();
+                                   e.stopPropagation();
+                               }}
+                               onClick={() => {
+                                   if (!!answer[index].value && letter.result !== 'correct' ) {
+                                       deleteAnswerLetter(index)}
+                                   }}>
                     {answer[index]?.value}
-                </button>
+                </div>
             })}
         </div>
         <div className={'letters'}>
             {letters.map((letter, index) => {
-                return <div className={'letters__content'} key={index}>
+                return <div className={classNames('letters__content', {
+                    'letters__content_invisible': !letter?.value || hideElement === index
+                })} key={index} onDragStart={(e) => {
+                    dragStart(e, index);
+                }} onDragEnd={() => {
+                    setHideElement(-1);
+                }} draggable>
                     {!!letter && <div className={'letters__content-letter'} key={letter.index} onClick={() => {
-                        const letterIndex = answer.findIndex((item) => !item.value);
-                        answer[letterIndex] = {...letter, result: null};
-                        letters[index] = {...letters[index], value: null};
-                        setAnswer([...answer]);
-                        if (answer.every((item) => !!item.value)) {
-                            validation();
-                        }
+                        const answerIndex = answer.findIndex((item) => !item.value);
+                        addAnswerLetter(answerIndex, index);
                     }}>
                         <span>
                             {letter.value}

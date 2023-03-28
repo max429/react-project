@@ -20,6 +20,10 @@
     font-size: 28px;
     align-items: center;
     justify-content: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .answer-field__item_filled {
     cursor: pointer;
@@ -43,6 +47,9 @@
     margin-right: 10px;
     border-radius: 7px;
 }
+.letters__content_invisible {
+    visibility: hidden;
+}
 .letters__content-letter {
     width: inherit;
     height: inherit;
@@ -55,6 +62,7 @@
     cursor: pointer;
     font-size: 28px;
     -webkit-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
