@@ -10,8 +10,9 @@
     "build": "webpack --mode production --progress",
     "tscheck": "tsc",
     "server": "json-server -w ./db.json -d 0",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "concurrently \"npm:server\" \"npm:dev\""
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "babel-loader": "^9.1.2",
+    "concurrently": "^7.6.0",
     "css-loader": "^6.7.3",
     "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
