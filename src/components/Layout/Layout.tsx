@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import {fetchUser} from "../../redux/actions/user.actions";
 import {Loading} from "../Loading/Loading";
 import {NavItem} from "./parts/NavItem";
+import '../../fonts/Fasthand/Fasthand-Regular.ttf';
 
 export const Layout = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const Layout = () => {
         return <Loading/>
     }
 
-    return (<div className={'container'}>
+    return (<div className={'container font-face-gm'}>
         <nav>
             <div className={'filler'}/>
             <ul className={'sidebar'}>

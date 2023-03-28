@@ -3,12 +3,17 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-
+@font-face {
+    font-family: 'FastHand';
+    src: local("Fasthand"), url("../../fonts/Fasthand/Fasthand-Regular.ttf");
+}
 body,
 #app, html {
     height: 100%;
     width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
 }
+
 .container {
     display: flex;
     height: 100%;
@@ -35,3 +40,9 @@ body,
     align-items: center;
     box-sizing: border-box;
 }
+/*.font-link {
+    font-family: 'Source Sans Pro', sans-serif
+}*/
+/*.font-face-gm {
+    font-family: FastHand, sans-serif;
+}*/
