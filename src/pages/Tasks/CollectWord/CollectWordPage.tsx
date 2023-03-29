@@ -5,6 +5,8 @@ import './CollectWordPage.css';
 import {shuffle} from "@/utils/array";
 import classNames from "classnames";
 import {TaskContainer} from "@/components/Container/Container";
+import { Tooltip } from 'react-tooltip'
+import {R} from "@/resources/R";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -128,9 +130,12 @@ export const CollectWordPage = () => {
     }
 
     return (<TaskContainer>
-        <span className={'word'}>
-            {wordRu}
-        </span>
+        <div className={classNames('word')} >
+            <div>
+                {wordRu}
+            </div>
+            <img src={R.images.help} className={classNames('my-anchor-element', 'word-image ')}/>
+        </div>
         <div className={'answer-field'}>
             {answer.map((letter, index) => {
                 return <div
@@ -191,5 +196,8 @@ export const CollectWordPage = () => {
                 </div>
             })}
         </div>
+        <Tooltip id="my-tooltip" openOnClick anchorSelect=".my-anchor-element">
+            {wordEn}
+        </Tooltip>
     </TaskContainer>)
 }

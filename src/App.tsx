@@ -11,6 +11,7 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Layout} from "./components/Layout/Layout";
 import {TrainingCardsPage} from "./pages/Tasks/TrainingCards/TrainingCardsPage";
+import 'react-tooltip/dist/react-tooltip.css';
 
 
 const router = createHashRouter([

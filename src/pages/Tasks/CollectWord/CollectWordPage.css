@@ -1,7 +1,16 @@
 .word {
+    display: flex;
+    align-items: center;
     margin-bottom: 30px;
     font-size: 28px;
-    cursor: help;
+}
+.word-image {
+    position: relative;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    top: 1px;
 }
 .answer-field {
     display: flex;
