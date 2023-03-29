@@ -1,12 +1,12 @@
 import React, {FC, useEffect, useState} from "react";
 import classNames from "classnames";
-import {Loading} from "../../../components/Loading/Loading";
-import {TaskContainer} from "../../../components/Container/Container";
-import {R} from "../../../resources/R";
+import {Loading} from "@/components/Loading/Loading";
+import {TaskContainer} from "@/components/Container/Container";
+import {R} from "@/resources/R";
 import {FindWordLetterWrapper} from "./parts/FindWordLetterWrapper";
-import './FindWordPage.css';
-import {Button} from "../../../components/Button/Button";
+import {Button} from "@/components/Button/Button";
 import {initializeField} from "./helpers";
+import './FindWordPage.css';
 
 export interface ILetter {
     letter: string | null;

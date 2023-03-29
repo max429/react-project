@@ -1,4 +1,4 @@
-import {IUser} from "../../interfaces/user.interface";
+import {IUser} from "@/interfaces/user.interface";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchUser} from "../actions/user.actions";
 

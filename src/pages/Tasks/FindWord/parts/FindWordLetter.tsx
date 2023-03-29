@@ -1,6 +1,6 @@
 import React, {FC, MouseEventHandler} from 'react';
 import classNames from "classnames";
-import {R} from "../../../../resources/R";
+import {R} from "@/resources/R";
 import {ResultType} from "../FindWordPage";
 
 export type LineDirection = 'left' | 'right' | 'down' | 'up';

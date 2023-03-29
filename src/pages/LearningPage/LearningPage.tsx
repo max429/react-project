@@ -1,8 +1,8 @@
 import React from 'react';
-import {Loading} from "../../components/Loading/Loading";
+import {Loading} from "@/components/Loading/Loading";
 import {Chapter} from "./parts/Chapter/Chapter";
-import {useAppSelector} from "../../hooks/redux";
-import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
+import {useAppSelector} from "@/hooks/redux";
+import {useGetChaptersQuery} from "@/redux/api/chaptersApi";
 import './LearningPage.css';
 
 export const LearningPage = () => {

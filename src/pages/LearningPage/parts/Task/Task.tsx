@@ -1,10 +1,10 @@
 import React, {FC, useState} from 'react';
 import './Task.css';
 import classNames from "classnames";
-import {IChapterTask} from "../../../../interfaces/chapters.interface";
+import {IChapterTask} from "@/interfaces/chapters.interface";
 import LOCK_IMAGE from '../../../../images/lock.png';
-import {CustomNavLink} from "../../../../components/CustomNavLink/CustomNavLink";
-import {SvgCrossIcon} from "../../../../components/svg/SvgCrossIcon";
+import {CustomNavLink} from "@/components/CustomNavLink/CustomNavLink";
+import {SvgCrossIcon} from "@/components/svg/SvgCrossIcon";
 
 export type TaskState = 'passed' | 'current' | 'locked';
 interface IProps {

@@ -1,6 +1,7 @@
 .word {
     margin-bottom: 30px;
     font-size: 28px;
+    cursor: help;
 }
 .answer-field {
     display: flex;
@@ -36,6 +37,9 @@
 .answer-field__item_incorrect {
     color: white;
     background-color: red;
+}
+.answer-field__item_drag-over {
+    background-color: beige;
 }
 .letters {
   display: flex;

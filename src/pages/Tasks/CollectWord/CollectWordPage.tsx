@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import {IChapterTaskWord} from "../../../interfaces/chapters.interface";
+import {IChapterTaskWord} from "@/interfaces/chapters.interface";
 import './CollectWordPage.css';
-import {shuffle} from "../../../utils/array";
+import {shuffle} from "@/utils/array";
 import classNames from "classnames";
-import {TaskContainer} from "../../../components/Container/Container";
+import {TaskContainer} from "@/components/Container/Container";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -17,6 +17,8 @@ export const CollectWordPage = () => {
     const [currentWord, setCurrentWord] = useState(0);
 
     const [hideElement, setHideElement] = useState(-1);
+
+    const [draggedOver, setDraggedOver] = useState(-1);
 
     const letterPlace = useRef<number>(-1);
 
@@ -131,31 +133,40 @@ export const CollectWordPage = () => {
         </span>
         <div className={'answer-field'}>
             {answer.map((letter, index) => {
-                return <div draggable className={classNames('answer-field__item', {
+                return <div
+                    draggable
+                    className={classNames('answer-field__item', {
                     'answer-field__item_filled': !!answer[index].value,
                     'answer-field__item_correct': letter.result === 'correct',
                     'answer-field__item_incorrect': letter.result === 'incorrect',
+                        'answer-field__item_drag-over': draggedOver === index && !answer[index].value,
                 })}
-                               key={index}
-                               onDragExit={() => {
-                                   letterPlace.current = -1;
-                               }}
-                               onDrop={() => {
-                                   if (!letter.value) {
-                                       addAnswerLetter(index, letterPlace.current);
-                                   }
-                               }}
-                                onDragStart={() => {
-                                }}
-                               onDragOver={(e) => {
-                                   e.dataTransfer.dropEffect = 'move';
-                                   e.preventDefault();
-                                   e.stopPropagation();
-                               }}
-                               onClick={() => {
-                                   if (!!answer[index].value && letter.result !== 'correct' ) {
-                                       deleteAnswerLetter(index)}
-                                   }}>
+                    key={index}
+                    onDragExit={() => {
+                        letterPlace.current = -1;
+                    }}
+                    onDrop={() => {
+                        if (!letter.value) {
+                            setDraggedOver(-1);
+                            addAnswerLetter(index, letterPlace.current);
+                        }
+                    }}
+                    onDragEnter={() => {
+                        setDraggedOver(index);
+                    }}
+                    onDragLeave={() => {
+                        setDraggedOver(-1);
+                    }}
+                    onDragOver={(e) => {
+                        e.dataTransfer.dropEffect = 'move';
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }}
+                    onClick={() => {
+                        if (!!answer[index].value && letter.result !== 'correct' ) {
+                            deleteAnswerLetter(index)}
+                    }}
+                >
                     {answer[index]?.value}
                 </div>
             })}

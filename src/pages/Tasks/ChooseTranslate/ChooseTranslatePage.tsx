@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import './ChooseTranslatePage.css'
 import {useNavigate} from "react-router-dom";
 import { useLocation } from 'react-router-dom'
-import {IChapterTaskWord, IChapterTaskWordVariant} from "../../../interfaces/chapters.interface";
+import {IChapterTaskWord, IChapterTaskWordVariant} from "@/interfaces/chapters.interface";
 import classNames from "classnames";
-import {fetchWordsForTask} from "../../../redux/actions/words.actions";
-import {shuffle} from "../../../utils/array";
-import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
+import {fetchWordsForTask} from "@/redux/actions/words.actions";
+import {shuffle} from "@/utils/array";
+import {ProgressBar} from "@/components/ProgressBar/ProgressBar";
 import ARROW_BACK from '../../../images/arrow_back.png';
-import {Modal} from "../../../components/Modal/Modal";
-import {TaskContainer} from "../../../components/Container/Container";
-import {Button} from "../../../components/Button/Button";
+import {TaskContainer} from "@/components/Container/Container";
+import {Button} from "@/components/Button/Button";
 
 interface IStateProps {
     words: IChapterTaskWord[];

@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Task, TaskState} from "./Task";
-import {IUser} from "../../../../interfaces/user.interface";
-import {IChapterTask} from "../../../../interfaces/chapters.interface";
+import {IUser} from "@/interfaces/user.interface";
+import {IChapterTask} from "@/interfaces/chapters.interface";
 
 interface IProps {
     chapterIndex: number;

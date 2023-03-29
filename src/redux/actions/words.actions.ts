@@ -1,7 +1,7 @@
 import axios from "axios";
 import randomWords from 'random-words';
-import {R} from "../../resources/R";
-import {WordsAmuseResponse} from "../../interfaces/words.actions.interface";
+import {R} from "@/resources/R";
+import {WordsAmuseResponse} from "@/interfaces/words.actions.interface";
 
 export const fetchWordsForTask = ({count}: {count: number}): Promise<{wordEn: string; wordRu: string}[]> => {
     return new Promise<{ wordRu: string; wordEn: string }[]>((resolve, reject) => {

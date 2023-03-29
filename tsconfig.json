@@ -18,7 +18,11 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true /*Enable importing .json files*/
+    "resolveJsonModule": true, /*Enable importing .json files*/
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

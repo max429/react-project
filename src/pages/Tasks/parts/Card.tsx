@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import './Card.css';
-import {speak, utterance} from "../../../utils/speech";
+import {speak, utterance} from "@/utils/speech";
 import classNames from "classnames";
-import {SpeakerIcon} from "../../../components/SpeakerIcon/SpeakerIcon";
+import {SpeakerIcon} from "@/components/SpeakerIcon/SpeakerIcon";
 
 interface IProps {
     languageMode?: 0 | 1;
