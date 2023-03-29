@@ -1,32 +1,31 @@
 import React from 'react';
-import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
 import {Loading} from "../../components/Loading/Loading";
-import './LearningPage.css'
 import {Chapter} from "./parts/Chapter/Chapter";
 import {useAppSelector} from "../../hooks/redux";
+import {useGetChaptersQuery} from "../../redux/api/chaptersApi";
+import './LearningPage.css';
 
 export const LearningPage = () => {
     const {data = [], isLoading} = useGetChaptersQuery(null);
     const user = useAppSelector((state) => state.userReducer.data);
 
-    console.log('Learning');
-
-    if (isLoading) {
-        return (<Loading/>)
-    }
+    if (isLoading) {return Loading}
 
     return (
         <div>
-
             <main className={'learning'}>
-                {data.map((item, chapterIndex) => {
-                    return (<Chapter key={item.id} index={chapterIndex} data={item} userData={user}/>)
-                })}
+
+                {data.map((item, chapterIndex) =>
+                   (<Chapter
+                       key={item.id}
+                       index={chapterIndex}
+                       data={item}
+                       userData={user}
+                   />)
+                )}
+
             </main>
-           {/* <div className={'statistic'}>
-                <div></div>
-                <span>Статистика</span>
-            </div>*/}
+
         </div>
     )
 }
