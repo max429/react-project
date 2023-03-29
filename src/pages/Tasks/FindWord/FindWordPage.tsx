@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useState} from "react";
+import classNames from "classnames";
 import {Loading} from "../../../components/Loading/Loading";
 import {TaskContainer} from "../../../components/Container/Container";
-import './FindWordPage.css';
-import classNames from "classnames";
 import {R} from "../../../resources/R";
+import './FindWordPage.css';
 
 interface ILetter {
     letter: string | null;
@@ -20,37 +20,9 @@ interface ILetter {
 
 type LineDirection = 'left' | 'right' | 'down' | 'up';
 
-const Line: FC<{direction: LineDirection}> = ({direction}) => {
-    let d = '';
-    let style =  {};
-    switch (direction) {
-        case 'left':
-            d = 'M8 5H2M4 3L2 5L4 7';
-            style = {left: -15};
-            break;
-        case 'right':
-            d = 'M2 5H8M6 3L8 5L6 7';
-            style = {right: -15};
-            break;
-        case 'down':
-            d = 'M5 2V8M3 6L5 8L7 6';
-            style = {bottom: -15};
-            break;
-        case 'up':
-            d = 'M5 8V2M3 4L5 2L7 4';
-            style = {top: -15};
-            break;
-    }
-    return (<svg width="25" height="25" style={{
-        position: 'absolute',
-        pointerEvents: 'none',
-        zIndex: 1,
-        ...style,
-    }}>
-        <svg viewBox="0 0 10 10" width={25} height={25}>
-            <path d={d} stroke={'#000'} strokeWidth="1"/>
-        </svg>
-    </svg>)
+const ArrowLine: FC<{direction: LineDirection}> = ({direction}) => {
+    return (<img alt={'Стрелка'} src={R.images.arrow_back}
+                 className={classNames('arrow-line', 'arrow-line_direction_' + direction)}/>)
 }
 
 export const FindWordPage = () => {
@@ -89,9 +61,9 @@ export const FindWordPage = () => {
         if (position.column !== 0 && horizontal) {
             availableDirections.push('left');
         }
-        console.log('availableDirections', availableDirections);
         return availableDirections;
     }
+
     function changeDirection(position: {row: number; column: number}, size: number, oldDirection?: LineDirection): LineDirection {
         let directions: LineDirection[] = getAvailableDirections(position, size, oldDirection);
         return directions[Math.floor(Math.random() * (directions.length - 1))]
@@ -158,7 +130,7 @@ export const FindWordPage = () => {
         }
     }, [selectedLetters])
 
-    if (!field) return <Loading/>
+    if (!field) return Loading;
 
     const validation = () => {
         let answer = '';
@@ -246,7 +218,7 @@ export const FindWordPage = () => {
 
                                            }
                                        }} key={column.id}>
-                            {isHasLine && <Line direction={direction}/>}
+                            {isHasLine && <ArrowLine direction={direction}/>}
                             {column.letter}
                         </button>
                     }))}

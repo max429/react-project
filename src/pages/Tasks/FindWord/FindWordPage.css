@@ -65,3 +65,25 @@
     color: white;
     background-color: red;
 }
+.arrow-line{
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    z-index: 1;
+    pointer-events: none;
+}
+.arrow-line_direction_up{
+    top: -18px;
+    transform: rotate(90deg);
+}
+.arrow-line_direction_left{
+    left: -18px;
+}
+.arrow-line_direction_down{
+    bottom: -18px;
+    transform: rotate(-90deg);
+}
+.arrow-line_direction_right{
+    right: -18px;
+    transform: rotate(180deg);
+}
