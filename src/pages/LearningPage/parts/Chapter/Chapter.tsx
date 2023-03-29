@@ -23,6 +23,7 @@ export const Chapter: FC<IProps> = ({data, index, userData}) => {
 
         {tasks.map((task, taskIndex) => {
             return (<TaskWrapper
+                key={task.id}
                 chapterIndex={index}
                 taskIndex={taskIndex}
                 userData={userData}

@@ -9,7 +9,7 @@ export const LearningPage = () => {
     const {data = [], isLoading} = useGetChaptersQuery(null);
     const user = useAppSelector((state) => state.userReducer.data);
 
-    if (isLoading) {return Loading}
+    if (isLoading) {return <Loading/>}
 
     return (
         <div>
