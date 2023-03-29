@@ -7,8 +7,8 @@
 .word-image {
     position: relative;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     margin-left: 4px;
     top: 1px;
 }
