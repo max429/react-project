@@ -7,6 +7,8 @@ import classNames from "classnames";
 import {TaskContainer} from "@/components/Container/Container";
 import { Tooltip } from 'react-tooltip'
 import {R} from "@/resources/R";
+import {CollectWordAnswerLetter} from "@/pages/Tasks/CollectWord/parts/CollectWordAnswerLetter";
+import {CollectWordLetter} from "@/pages/Tasks/CollectWord/parts/CollectWordLetter";
 
 interface IStateProps {
     words: IChapterTaskWord[];
@@ -137,66 +139,47 @@ export const CollectWordPage = () => {
             <div>
                 {wordRu}
             </div>
-            <img src={R.images.help} className={classNames('my-anchor-element', 'word-image ')}/>
+            <img alt={'Помощь'} src={R.images.help} className={classNames('my-anchor-element', 'word-image ')}/>
         </div>
+
         <div className={'answer-field'}>
             {answer.map((letter, index) => {
-                return <div
-                    draggable
-                    className={classNames('answer-field__item', {
-                    'answer-field__item_filled': !!answer[index].value,
-                    'answer-field__item_correct': letter.result === 'correct',
-                    'answer-field__item_incorrect': letter.result === 'incorrect',
-                        'answer-field__item_drag-over': draggedOver === index && !answer[index].value,
-                })}
-                    key={index}
-                    onDragExit={() => {
-                        letterPlace.current = -1;
-                    }}
-                    onDrop={() => {
-                        if (!letter.value) {
-                            setDraggedOver(-1);
-                            addAnswerLetter(index, letterPlace.current);
+                return (
+                    <CollectWordAnswerLetter
+                        data={letter}
+                        index={index}
+                        draggedOver={draggedOver}
+                        onDragExit={() => letterPlace.current = -1}
+                        onDrop={() => {
+                            if (!letter.value) {
+                                setDraggedOver(-1);
+                                addAnswerLetter(index, letterPlace.current);
+                            }}
                         }
-                    }}
-                    onDragEnter={() => {
-                        setDraggedOver(index);
-                    }}
-                    onDragLeave={() => {
-                        setDraggedOver(-1);
-                    }}
-                    onDragOver={(e) => {
-                        e.dataTransfer.dropEffect = 'move';
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }}
-                    onClick={() => {
-                        if (!!answer[index].value && letter.result !== 'correct' ) {
-                            deleteAnswerLetter(index)}
-                    }}
-                >
-                    {answer[index]?.value}
-                </div>
+                        onDragLeave={() => setDraggedOver(-1)}
+                        onDragEnter={() => setDraggedOver(index)}
+                        onClick={() => {
+                            if (!!answer[index].value && letter.result !== 'correct' ) {
+                                deleteAnswerLetter(index)}
+                        }}
+                    />)
             })}
         </div>
+
         <div className={'letters'}>
             {letters.map((letter, index) => {
-                return <div className={classNames('letters__content', {
-                    'letters__content_invisible': !letter?.value || hideElement === index
-                })} key={index} onDragStart={(e) => {
-                    dragStart(e, index);
-                }} onDragEnd={() => {
-                    setHideElement(-1);
-                }} draggable>
-                    {!!letter && <div className={'letters__content-letter'} key={letter.index} onClick={() => {
-                        const answerIndex = answer.findIndex((item) => !item.value);
-                        addAnswerLetter(answerIndex, index);
-                    }}>
-                        <span>
-                            {letter.value}
-                        </span>
-                    </div>}
-                </div>
+                return (
+                    <CollectWordLetter
+                        data={letter}
+                        index={index}
+                        hideElement={hideElement}
+                        onDragStart={(e) => dragStart(e, index)}
+                        onDragEnd={() => setHideElement(-1)}
+                        onClick={() => {
+                            const answerIndex = answer.findIndex((item) => !item.value);
+                            addAnswerLetter(answerIndex, index);
+                        }}
+                    />)
             })}
         </div>
         <Tooltip id="my-tooltip" openOnClick anchorSelect=".my-anchor-element">
