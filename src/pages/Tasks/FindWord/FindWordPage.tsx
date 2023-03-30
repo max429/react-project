@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import classNames from "classnames";
 import {Loading} from "@/components/Loading/Loading";
 import {TaskContainer} from "@/components/Container/Container";
@@ -80,7 +80,10 @@ export const FindWordPage = () => {
         }
     }
 
-    return <TaskContainer>
+    return <TaskContainer progressBar={{
+        data: [],
+        length: 1,
+    }}>
         <span className={'text'}>
             {translateWord}
         </span>

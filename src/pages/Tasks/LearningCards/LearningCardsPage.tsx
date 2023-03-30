@@ -28,7 +28,7 @@ export const LearningCardsPage = () => {
 
             } else if (e.code === 'ArrowLeft') {
                 setLeftButtonActive(true);
-               goLeft();
+                goLeft();
                 setTimeout(() => {
                     setLeftButtonActive(false);
                 }, 200);

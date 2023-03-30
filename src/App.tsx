@@ -1,5 +1,13 @@
 import React from 'react';
-import {BrowserRouter, createHashRouter, HashRouter, Route, RouterProvider, Routes} from "react-router-dom";
+import {
+    BrowserRouter,
+    createHashRouter,
+    createRoutesFromElements,
+    HashRouter,
+    Route,
+    RouterProvider,
+    Routes
+} from "react-router-dom";
 import {store} from "./redux/store";
 import {Provider} from "react-redux";
 import 'react-tooltip/dist/react-tooltip.css';
@@ -19,69 +27,32 @@ import {ProtectedRoute} from "@/components/ProtectedRoute/ProtectedRoute";
 import './App.css';
 
 
-const router = createHashRouter([
-    {
-        path: "/",
-        element: <Layout/>,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: "/learning",
-                element: <LearningPage/>,
-                //index: true,
-            },
-            {
-                path: "/profile",
-                element: <ProfilePage/>,
-            },
-            {
-                path: '/learning/choose-translate',
-                element: <ChooseTranslatePage/>,
-            },
-            {
-                path: '/learning/find-word',
-                element: <FindWordPage/>,
-            },
-            {
-                path: '/learning/collect-word',
-                element: <CollectWordPage/>,
-            },
-            {
-                path: '/learning/learning-cards',
-                element: <LearningCardsPage/>,
-            },
-            {
-                path: '/learning/training-cards',
-                element: <TrainingCardsPage/>,
-            }
-        ]
-    },
-]);
+const router = createHashRouter(createRoutesFromElements(
+    <Route errorElement={<ErrorPage/>}>
+        <Route element={
+            <ProtectedRoute>
+                <Layout/>
+            </ProtectedRoute>
+        }>
+            <Route path={'/learning'} element={<LearningPage/>}/>
+            <Route path={"/profile"} element={<ProfilePage/>}/>
+            <Route path={"/learning/choose-translate"} element={<ChooseTranslatePage/>}/>
+            <Route path={"/learning/find-word"} element={<FindWordPage/>}/>
+            <Route path={"/learning/collect-word"} element={<CollectWordPage/>}/>
+            <Route path={"/learning/learning-cards"} element={<LearningCardsPage/>}/>
+            <Route path={"/learning/training-cards"} element={<TrainingCardsPage/>}/>
+        </Route>
+        <Route>
+            <Route path={"/"} element={<LoginPage/>}/>
+            <Route path={"/register"} element={<RegistrationPage/>}/>
+        </Route>
+    </Route>
+))
 
 export const App = () => {
     return (
         <Provider store={store}>
-            <HashRouter>
-                <Routes>
-                    <Route  element={
-                        <ProtectedRoute>
-                            <Layout/>
-                        </ProtectedRoute>
-                    }>
-                        <Route path={'/learning'} element={<LearningPage/>}/>
-                        <Route path={"/profile"} element={<ProfilePage/>}/>
-                        <Route path={"/learning/choose-translate"} element={<ChooseTranslatePage/>}/>
-                        <Route path={"/learning/find-word"} element={<FindWordPage/>}/>
-                        <Route path={"/learning/collect-word"} element={<CollectWordPage/>}/>
-                        <Route path={"/learning/learning-cards"} element={<LearningCardsPage/>}/>
-                        <Route path={"/learning/training-cards"} element={<TrainingCardsPage/>}/>
-                    </Route>
-                    <Route>
-                        <Route path={"/"} element={<LoginPage/>}/>
-                        <Route path={"/register"} element={<RegistrationPage/>}/>
-                    </Route>
-                </Routes>
-            </HashRouter>
+           <RouterProvider router={router}/>
         </Provider>
     )
 }

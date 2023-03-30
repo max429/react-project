@@ -79,7 +79,7 @@ export const LoginPage = () => {
 
         <Button text={'Войти'} className={'login-form__button'}/>
         <Button text={'Регистрация'} className={'login-form__registration-button'} onClick={() => {
-
+            navigate('/register')
         }} type={'button'}/>
     </form>)
 }

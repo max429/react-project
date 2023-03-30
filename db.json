@@ -131,7 +131,39 @@
           "type": "find-word"
         }, {
           "id": 5,
-          "words": [{}, {}, {}, {}, {}],
+          "words": [{
+            "id": 1,
+            "wordRu": "семья",
+            "wordEn": "family",
+            "imgLink": "https://tyonote.com/wp-content/uploads/2021/07/family.jpg"
+          }, {
+            "id": 2,
+            "wordRu": "друг",
+            "wordEn": "friend",
+            "imgLink": "https://t3.ftcdn.net/jpg/02/92/41/20/360_F_292412083_ZIEmu0X4TwxY4SWPDCaLl42Q5NT6to6I.jpg"
+          }, {
+            "id": 3,
+            "wordRu": "мама",
+            "wordEn": "mother",
+            "imgLink": "https://img.freepik.com/premium-vector/illustration-cartoon-character-mother-baby_82446-140.jpg?w=2000"
+          }, {
+            "id": 4,
+            "wordRu": "папа",
+            "wordEn": "father",
+            "imgLink": "https://img.freepik.com/free-vector/happy-father-s-day_24908-59789.jpg?w=2000"
+          }, {
+            "id": 5,
+            "wordRu": "помощь",
+            "wordEn": "help",
+            "imgLink": "https://img.freepik.com/premium-vector/kids-good-manners-different-situations-set-vector-son-help-mother-share-ice-cream-with-friend-girl-open-door-grandfather-give-water-grandmother-characters-flat-cartoon-illustrations_87720-4381.jpg?w=2000"
+          },
+            {
+              "id": 6,
+              "wordRu": "отношения",
+              "wordEn": "relationship",
+              "imgLink": "https://i.pinimg.com/originals/ba/f6/8b/baf68ba5d230955c930ee8e3c787421e.jpg"
+            }
+          ],
           "type": "training-cards"
         }, {
           "id": 6,
