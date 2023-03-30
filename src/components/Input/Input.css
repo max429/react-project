@@ -1,0 +1,25 @@
+.input-container {
+    margin-bottom: 10px;
+}
+.input {
+    all: unset;
+    display: block;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    margin-top: 8px;
+    appearance: none;
+    transition:  border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.input_error {
+    border-color: red;
+}
+.input-error {
+    margin-top: 5px;
+    color: red;
+}
+.input:focus {
+    border-color: black;
+}
