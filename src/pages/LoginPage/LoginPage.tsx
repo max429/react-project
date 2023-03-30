@@ -7,6 +7,9 @@ import {fetchUser, userLogin} from "@/redux/actions/user.actions";
 import {login} from "@/redux/reducers/UserSlice";
 import './LoginPage.css';
 import {Input} from "@/components/Input/Input";
+import {Modal} from "@/components/Modal/Modal";
+import {RegistrationModal} from "@/components/RegistrationModal/RegistrationModal";
+import {loginValidationRules} from "@/utils/validationRules";
 
 interface SignInData {
     password: string;
@@ -17,6 +20,8 @@ export const LoginPage = () => {
     const dispatch: any = useDispatch();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: {errors} } = useForm<SignInData>();
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [error, setError] = useState('');
 
@@ -43,43 +48,39 @@ export const LoginPage = () => {
         });
     }
 
-    return (<form onSubmit={handleSubmit(onLogin)} noValidate className={'login-form'}>
+    const openRegistration = () => {
+        setModalVisible(true);
+    }
+
+    return (<>
+        <Modal visible={modalVisible} setVisible={setModalVisible}>
+            <RegistrationModal modalVisible={modalVisible}/>
+        </Modal>
+        <form onSubmit={handleSubmit(onLogin)} noValidate className={'login-form'}>
         <Input labelText={'Email'} errorText={errors.email?.message} inputProps={{
             type: 'email',
             onInput: () => {
                 setError('');
             },
-            ...register('email', {
-                required: {
-                    value: true,
-                    message: 'Пожалуйста заполните поле'
-                },
-
-                pattern: {
-                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: 'Неверный email',
-                }
-            })
+            ...register('email', loginValidationRules.email)
         }}/>
         <Input labelText={'Пароль'} errorText={errors.password?.message}  inputProps={{
             type: 'password',
             onInput: () => {
                 setError('');
             },
-            ...register('password', {
-                required: {
-                    value: true,
-                    message: 'Пожалуйста заполните поле'
-                },
-            })
+            ...register('password', loginValidationRules.password)
         }}/>
         {!!error && <div className={'login-form__error'}>
             {error}
         </div>}
 
         <Button text={'Войти'} className={'login-form__button'}/>
-        <Button text={'Регистрация'} className={'login-form__registration-button'} onClick={() => {
-            navigate('/register')
-        }} type={'button'}/>
-    </form>)
+        <Button
+            text={'Регистрация'}
+            className={'login-form__registration-button'}
+            onClick={openRegistration}
+            type={'button'}/>
+    </form>
+    </>)
 }

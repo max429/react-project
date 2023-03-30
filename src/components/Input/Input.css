@@ -10,8 +10,10 @@
     border: 1px solid #ced4da;
     margin-top: 8px;
     appearance: none;
-    transition:  border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
+    box-sizing: border-box;
+}
+.input_password {
+    padding-right: 35px;
 }
 .input_error {
     border-color: red;
@@ -19,7 +21,16 @@
 .input-error {
     margin-top: 5px;
     color: red;
+    width: 300px;
 }
 .input:focus {
     border-color: black;
+}
+.input__visibility-image {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 18px;
+    top: 12px;
 }

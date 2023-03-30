@@ -6,10 +6,10 @@
     align-items: center;
 }
 .login-form__button {
-    width: 330px;
+    width: 300px;
 }
 .login-form__registration-button {
-    width: 330px;
+    width: 300px;
     margin-top: 10px;
 }
 .login-form__error {

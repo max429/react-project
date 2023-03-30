@@ -1,0 +1,12 @@
+.checkbox-container {
+    margin-bottom: 10px;
+}
+.checkbox {
+    position: relative;
+    top: 1px;
+}
+.checkbox-error {
+    margin-top: 5px;
+    color: red;
+    width: 300px;
+}
