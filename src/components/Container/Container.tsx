@@ -18,10 +18,9 @@ interface IProps {
 
 export const TaskContainer: FC<IProps> = ({children, classes, progressBar}) => {
     const [modalVisible, setModalVisible] = useState(false);
-    console.log(modalVisible);
     const navigate = useNavigate();
     return (
-        <div className={classNames('task-container', classes)}>
+        <div className={'task-container'}>
             <Modal visible={modalVisible} setVisible={setModalVisible}>
                 <div className={'task-container__modal-button-text'}>
                     Вы действительно хотите выйти?
@@ -39,7 +38,7 @@ export const TaskContainer: FC<IProps> = ({children, classes, progressBar}) => {
                 data={progressBar.data}
                 length={progressBar.length}/>
         </div>}
-        <div className={'task-container-content'}>
+        <div className={classNames('task-container-content', classes)}>
             {children}
         </div>
 

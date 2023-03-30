@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import classNames from "classnames";
 import {useLocation} from "react-router-dom";
 import {IChapterTaskWord} from "@/interfaces/chapters.interface";
-import './LearningCardsPage.css'
 import {R} from "@/resources/R";
 import {TaskContainer} from "@/components/Container/Container";
 import {Card} from "../parts/Card";
-import classNames from "classnames";
 import {cancelSpeak} from "@/utils/speech";
+import './LearningCardsPage.css';
 
 export const LearningCardsPage = () => {
     const location = useLocation();

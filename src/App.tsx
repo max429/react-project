@@ -12,7 +12,7 @@ import {store} from "./redux/store";
 import {Layout} from "./components/Layout/Layout";
 import {TrainingCardsPage} from "./pages/Tasks/TrainingCards/TrainingCardsPage";
 import 'react-tooltip/dist/react-tooltip.css';
-import {LoginPage} from "@/pages/AuthorizationPage/LoginPage";
+import {LoginPage} from "@/pages/LoginPage/LoginPage";
 import {RegistrationPage} from "@/pages/RegistrationPage/RegistrationPage";
 import {ProtectedRoute} from "@/components/ProtectedRoute/ProtectedRoute";
 
