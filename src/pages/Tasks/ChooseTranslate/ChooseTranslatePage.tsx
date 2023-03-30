@@ -79,18 +79,13 @@ export const ChooseTranslatePage = () => {
         }, 500)
     }
 
-    return (!showFinalResult ? <div className={classNames('translate-card-container', {
+    return (!showFinalResult ? <TaskContainer classes={classNames('translate-card-container', {
         'fade-out': answers.length === words?.length,
         'fade-in': answers.length === 0,
-    })}>
-        <div className={'translate-card-header'}>
-            <div onClick={goBack} className={'translate-card-header__back-button'}>
-                <img alt={'Назад'} src={ARROW_BACK}/>
-            </div>
-            <ProgressBar
-                data={answers.map((item) => item.answer === 'correct')}
-                length={words.length}/>
-        </div>
+    })} progressBar={{
+        data: answers.map((item) => item.answer === 'correct'),
+        length: words.length
+    }}>
         <div className={classNames('translate-card-main', {
             'fade-out': answers.length !== activeVariant,
             'fade-in': answers.length === activeVariant,
@@ -113,7 +108,7 @@ export const ChooseTranslatePage = () => {
                               onClick={() => onCardClick(item)}/>)
             })}
         </div>
-    </div> : <TaskContainer classes={['fade-in']}>
+    </TaskContainer> : <TaskContainer classes={['fade-in']}>
             <div>
                 Задание завершено
             </div>
