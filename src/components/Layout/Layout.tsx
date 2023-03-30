@@ -3,10 +3,9 @@ import {Outlet} from "react-router-dom";
 import {useAppSelector} from "@/hooks/redux";
 import {Loading} from "../Loading/Loading";
 import {NavItem} from "./parts/NavItem";
-import '../../fonts/Fasthand/Fasthand-Regular.ttf';
-import './Layout.css';
 import {useDispatch} from "react-redux";
 import {userLogout} from "@/redux/actions/user.actions";
+import './Layout.css';
 
 export const Layout = () => {
     const dispatch: any = useDispatch();

@@ -1,5 +1,9 @@
 import React from 'react';
 import {BrowserRouter, createHashRouter, HashRouter, Route, RouterProvider, Routes} from "react-router-dom";
+import {store} from "./redux/store";
+import {Provider} from "react-redux";
+import 'react-tooltip/dist/react-tooltip.css';
+
 import {ErrorPage} from "./pages/ErrorPage/ErrorPage";
 import {LearningPage} from "./pages/LearningPage/LearningPage";
 import {ProfilePage} from "./pages/ProfilePage/ProfilePage";
@@ -7,14 +11,12 @@ import {ChooseTranslatePage} from "./pages/Tasks/ChooseTranslate/ChooseTranslate
 import {FindWordPage} from "./pages/Tasks/FindWord/FindWordPage";
 import {CollectWordPage} from "./pages/Tasks/CollectWord/CollectWordPage";
 import {LearningCardsPage} from "./pages/Tasks/LearningCards/LearningCardsPage";
-import {Provider} from "react-redux";
-import {store} from "./redux/store";
 import {Layout} from "./components/Layout/Layout";
 import {TrainingCardsPage} from "./pages/Tasks/TrainingCards/TrainingCardsPage";
-import 'react-tooltip/dist/react-tooltip.css';
 import {LoginPage} from "@/pages/LoginPage/LoginPage";
 import {RegistrationPage} from "@/pages/RegistrationPage/RegistrationPage";
 import {ProtectedRoute} from "@/components/ProtectedRoute/ProtectedRoute";
+import './App.css';
 
 
 const router = createHashRouter([
