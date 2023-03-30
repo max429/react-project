@@ -129,7 +129,10 @@ export const CollectWordPage = () => {
         setLetters([...letters]);
     }
 
-    return (<TaskContainer>
+    return (<TaskContainer progressBar={{
+        length: state.words.length,
+        data: []
+    }}>
         <div className={classNames('word')} >
             <div>
                 {wordRu}

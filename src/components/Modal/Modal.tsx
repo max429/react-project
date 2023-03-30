@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import './Modal.css';
 import classNames from "classnames";
+import './Modal.css';
 
 interface IProps {
     visible: boolean;
@@ -11,14 +11,13 @@ interface IProps {
 
 export const Modal: FC<IProps> = ({visible, setVisible, children, onClose}) => {
     return <div
-        className={classNames('modal', {
-         modal_visible: visible})}
-                onClick={() => {
-                    setVisible(false)
-                    if (onClose) {
-                        onClose();
-                    }
-                }
+        className={classNames('modal', {modal_visible: visible})}
+        onClick={() => {
+            setVisible(false)
+            if (onClose) {
+                onClose();
+            }
+        }
     }>
         <div className={classNames('modal__content', {
             'modal__content_visible': visible

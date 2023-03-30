@@ -113,9 +113,6 @@ export const ChooseTranslatePage = () => {
                               onClick={() => onCardClick(item)}/>)
             })}
         </div>
-      {/* <Modal visible={modalVisible} setVisible={setModalVisible} onClose={() => setTimeout(() => goBack(), 200)}>
-            Правильные ответы: {`${answers.reduce((accumulator , currentValue) => accumulator + Number(currentValue.answer === 'correct'), 0)}/${answers.length}`}
-        </Modal>*/}
     </div> : <TaskContainer classes={['fade-in']}>
             <div>
                 Задание завершено

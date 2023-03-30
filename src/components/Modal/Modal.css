@@ -6,12 +6,13 @@
     right: 0;
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transition: 0.5s;
+    z-index: 2;
 }
 .modal_visible {
     transform: scale(1);
