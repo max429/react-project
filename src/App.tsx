@@ -1,5 +1,5 @@
 import React from 'react';
-import {createHashRouter, RouterProvider} from "react-router-dom";
+import {BrowserRouter, createHashRouter, HashRouter, Route, RouterProvider, Routes} from "react-router-dom";
 import {ErrorPage} from "./pages/ErrorPage/ErrorPage";
 import {LearningPage} from "./pages/LearningPage/LearningPage";
 import {ProfilePage} from "./pages/ProfilePage/ProfilePage";
@@ -12,6 +12,9 @@ import {store} from "./redux/store";
 import {Layout} from "./components/Layout/Layout";
 import {TrainingCardsPage} from "./pages/Tasks/TrainingCards/TrainingCardsPage";
 import 'react-tooltip/dist/react-tooltip.css';
+import {LoginPage} from "@/pages/AuthorizationPage/LoginPage";
+import {RegistrationPage} from "@/pages/RegistrationPage/RegistrationPage";
+import {ProtectedRoute} from "@/components/ProtectedRoute/ProtectedRoute";
 
 
 const router = createHashRouter([
@@ -56,7 +59,27 @@ const router = createHashRouter([
 export const App = () => {
     return (
         <Provider store={store}>
-            <RouterProvider router={router}/>
+            <HashRouter>
+                <Routes>
+                    <Route  element={
+                        <ProtectedRoute>
+                            <Layout/>
+                        </ProtectedRoute>
+                    }>
+                        <Route path={'/learning'} element={<LearningPage/>}/>
+                        <Route path={"/profile"} element={<ProfilePage/>}/>
+                        <Route path={"/learning/choose-translate"} element={<ChooseTranslatePage/>}/>
+                        <Route path={"/learning/find-word"} element={<FindWordPage/>}/>
+                        <Route path={"/learning/collect-word"} element={<CollectWordPage/>}/>
+                        <Route path={"/learning/learning-cards"} element={<LearningCardsPage/>}/>
+                        <Route path={"/learning/training-cards"} element={<TrainingCardsPage/>}/>
+                    </Route>
+                    <Route>
+                        <Route path={"/"} element={<LoginPage/>}/>
+                        <Route path={"/register"} element={<RegistrationPage/>}/>
+                    </Route>
+                </Routes>
+            </HashRouter>
         </Provider>
     )
 }

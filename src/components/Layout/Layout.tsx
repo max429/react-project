@@ -1,27 +1,16 @@
 import React from 'react';
-import './Layout.css';
-import {Outlet, useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {useEffect} from "react";
-import {fetchUser} from "../../redux/actions/user.actions";
+import {Outlet} from "react-router-dom";
+import {useAppSelector} from "@/hooks/redux";
 import {Loading} from "../Loading/Loading";
 import {NavItem} from "./parts/NavItem";
 import '../../fonts/Fasthand/Fasthand-Regular.ttf';
+import './Layout.css';
+import {useDispatch} from "react-redux";
+import {userLogout} from "@/redux/actions/user.actions";
 
 export const Layout = () => {
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
-    const {isLoading, data} = useAppSelector(state => state.userReducer);
-
-    useEffect(() => {
-        dispatch(fetchUser(1677675315369));
-    }, [])
-    useEffect(() => {
-        if (Object.keys(data).length) {
-            navigate('learning');
-        }
-    }, [data])
+    const dispatch: any = useDispatch();
+    const {isLoading} = useAppSelector(state => state.userReducer);
 
     if (isLoading) {
         return <Loading/>
@@ -33,7 +22,11 @@ export const Layout = () => {
             <ul className={'sidebar'}>
                 <NavItem text={'Обучение'} link='/learning'/>
                 <NavItem text={'Профиль'} link='/profile'/>
+                <NavItem text={'Выход'} link='/' onClick={() => {
+                    dispatch(userLogout())
+                }}/>
             </ul>
+
         </nav>
         <div className={'content'}>
             {<Outlet/>}

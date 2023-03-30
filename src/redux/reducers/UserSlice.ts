@@ -5,19 +5,28 @@ import {fetchUser} from "../actions/user.actions";
 interface UserState {
     data: IUser;
     isLoading: boolean;
+    isLogged: boolean;
     error: string;
 }
 
 const initialState: UserState = {
     data: {},
     isLoading: false,
+    isLogged: false,
     error: '',
 }
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        login(state, action){
+            state.isLogged = true;
+        },
+        logout(state, action){
+            state.isLogged = false;
+        }
+    },
     extraReducers: {
         [fetchUser.pending.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = true;
@@ -34,5 +43,7 @@ export const userSlice = createSlice({
     }
 
 });
+
+export const { login, logout } = userSlice.actions
 
 export default userSlice.reducer;
