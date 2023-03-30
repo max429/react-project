@@ -26,8 +26,8 @@ export const TaskContainer: FC<IProps> = ({children, classes, progressBar}) => {
                     Вы действительно хотите выйти?
                 </div>
                 <div className={'task-container__modal-button-container'}>
-                    <Button text={'Нет'} onClick={() => setModalVisible(false)}/>
-                    <Button text={'Да'} onClick={() => navigate(-1)}/>
+                    <Button className={'task-container__modal-button'} text={'Нет'} onClick={() => setModalVisible(false)}/>
+                    <Button className={'task-container__modal-button'} text={'Да'} onClick={() => navigate(-1)}/>
                 </div>
             </Modal>
         {!!progressBar && <div className={'task-container-header'}>

@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import classNames from "classnames";
 import './Modal.css';
+import {SvgCrossIcon} from "@/components/svg/SvgCrossIcon";
 
 interface IProps {
     visible: boolean;
@@ -19,9 +20,13 @@ export const Modal: FC<IProps> = ({visible, setVisible, children, onClose}) => {
             }
         }
     }>
+
         <div className={classNames('modal__content', {
             'modal__content_visible': visible
         })} onClick={(event) => event.stopPropagation()}>
+            <div className={'modal__close-button'} onClick={() => setVisible(false)}>
+                <SvgCrossIcon color={'black'}/>
+            </div>
             {children}
         </div>
     </div>
